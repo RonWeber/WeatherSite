@@ -1,0 +1,13 @@
+table {
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 1px solid black;
+}
+
+.weather_icon {
+    max-width:100%;
+    width:auto;
+    height:1.5em;
+}
