@@ -4,16 +4,16 @@
 
 @Scripts.Render("~/bundles/jquery")
 @Scripts.Render("~/bundles/bootstrap")    
-@Scripts.Render("~/Scripts/weather_get.js")
 @Styles.Render("~/Content/weather.css")
         
 <body id='body'>
-    Enter city: <input type="text" id="cityText">
-    <input id="weatherGet" type='button' value="Get weather" />
-    <br>
-    <input id="dailyWeather" type='radio' name="timescale" checked>Daily Forecast
-    <input id="hourlyWeather" type='radio' name="timescale">3 Hour Forecast
-    <br>
-    <div id="divWeather" style='height:300px'></div>
- </body>
+    @using (Html.BeginForm("WeatherAnswer", "home"))
+    {
+        <p>Enter city: </p> @Html.TextBox("location")
+        <input type="submit" value="Get weather" />
+        <br />
+        <p>@Html.RadioButton("timescale", "daily", true) Daily Forecast</p>
+        <p>@Html.RadioButton("timescale", "hourly", false) 3 Hour Forecast</p>
+    }
+</body>
 
