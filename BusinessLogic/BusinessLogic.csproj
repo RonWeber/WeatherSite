@@ -45,8 +45,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DailyWeatherResponse.cs" />
+    <Compile Include="HourlyWeatherResponse.cs" />
     <Compile Include="WeatherRemote.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WeatherResponse.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
