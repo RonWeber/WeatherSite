@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using BusinessLogic.gov.weather.graphical;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -6,6 +7,9 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
+using System.Xml.Linq;
+using System.Xml.Serialization;
 
 namespace BusinessLogic
 {
@@ -13,13 +17,16 @@ namespace BusinessLogic
 
     public class WeatherRemote
     {
+        public NWSCityList cityList = new NWSCityList();
+
         public WeatherRemote()
         {
-
+     
         }
 
-        public WeatherResponse GetWeather(String location, String timescale = "daily")
+        public WeatherResponse GetWeatherOpenWeatherMap(string location, string timescale = "daily")
         {
+
             Boolean isDaily = timescale.Equals("daily");
             //Send a request
             String url = "http://api.openweathermap.org/data/2.5/forecast";
@@ -44,9 +51,21 @@ namespace BusinessLogic
                     return obj;
                 }
             }
-
             return null;
 
+        }
+
+        public WeatherResponse GetWeatherNWS(String cityName)
+        {
+            City city = cityList.getCityByName(cityName);
+            ndfdXML request = new ndfdXML();
+            string response = request.NDFDgenByDay(city.latitude, city.longitude, DateTime.Now, "10", unitType.e, formatType.Item24hourly);
+
+            XmlRootAttribute root = new XmlRootAttribute("dwml");
+            root.IsNullable = true;
+            XmlSerializer serializer = new XmlSerializer(typeof(NWSResponse));
+            WeatherResponse result = (NWSResponse)serializer.Deserialize(new StringReader(response));
+            return result;
         }
     }
 }
