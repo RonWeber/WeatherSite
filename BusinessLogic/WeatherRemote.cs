@@ -61,11 +61,21 @@ namespace BusinessLogic
             ndfdXML request = new ndfdXML();
             string response = request.NDFDgenByDay(city.latitude, city.longitude, DateTime.Now, "10", unitType.e, formatType.Item24hourly);
 
+            XmlSerializer serializer = new XmlSerializer(typeof(Entities.NDFDgenByDay.dwml));
+
+            Entities.NDFDgenByDay.dwml weather = (Entities.NDFDgenByDay.dwml)serializer.Deserialize(new MemoryStream(Encoding.UTF8.GetBytes(response)));
+
+
+
+
+
+
             XmlRootAttribute root = new XmlRootAttribute("dwml");
             root.IsNullable = true;
-            XmlSerializer serializer = new XmlSerializer(typeof(NWSResponse));
-            WeatherResponse result = (NWSResponse)serializer.Deserialize(new StringReader(response));
-            return result;
+            //XmlSerializer serializer = new XmlSerializer(typeof(NWSResponse));
+            //WeatherResponse result = (NWSResponse)serializer.Deserialize(new StringReader(response));
+            //return result;
+            return null;
         }
     }
 }

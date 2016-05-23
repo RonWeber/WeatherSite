@@ -47,11 +47,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="City.cs" />
+    <Compile Include="Entities\City.cs" />
     <Compile Include="DailyWeatherResponse.cs" />
+    <Compile Include="Entities\NDFDgenByDay.cs" />
     <Compile Include="NWSCityList.cs" />
     <Compile Include="HourlyWeatherResponse.cs" />
-    <Compile Include="NWSResponse.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
