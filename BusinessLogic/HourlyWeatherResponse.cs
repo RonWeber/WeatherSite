@@ -60,7 +60,6 @@ namespace BusinessLogic
             //Generate a table based on the json response.
             string table = "<b>" + city.name + "</b><br/>";
             table += "<table id=\"weatherTable\">";
-            table += "";
             table += "<tr><th>Time</th><th>Weather</th><th>Temperature</th><th>Humidity</th>";
             table += "</tr>";
             foreach (HourlyItem item in list)

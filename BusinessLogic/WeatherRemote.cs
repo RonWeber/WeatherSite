@@ -66,16 +66,7 @@ namespace BusinessLogic
             Entities.NDFDgenByDay.dwml weather = (Entities.NDFDgenByDay.dwml)serializer.Deserialize(new MemoryStream(Encoding.UTF8.GetBytes(response)));
 
 
-
-
-
-
-            XmlRootAttribute root = new XmlRootAttribute("dwml");
-            root.IsNullable = true;
-            //XmlSerializer serializer = new XmlSerializer(typeof(NWSResponse));
-            //WeatherResponse result = (NWSResponse)serializer.Deserialize(new StringReader(response));
-            //return result;
-            return null;
+            return new NWSWeatherResponse(weather);
         }
     }
 }
