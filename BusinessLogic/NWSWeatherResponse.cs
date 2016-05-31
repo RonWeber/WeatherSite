@@ -39,7 +39,7 @@ namespace BusinessLogic
             {
                 return "<p>Error.</p>";
             }
-            string table = "<table class=\"table table-striped\" id=\"weatherTable\">";
+            string table = "<table class=\"table table-striped table-bordered\" id=\"weatherTable\">";
             table += "<tr><th>Time</th><th>Weather Type</th><th>" + information.data.parameters.temperature[1].name + "</th><th>" + information.data.parameters.temperature[0].name + "</th>";
             table += "</tr>";
             for (int i = 1; i < information.data.timelayout[0].Items.Length; i += 2)
