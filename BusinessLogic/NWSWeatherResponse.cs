@@ -4,12 +4,29 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BusinessLogic.Entities;
+using BusinessLogic.gov.weather.graphical;
+using System.Xml.Serialization;
+using System.IO;
 
 namespace BusinessLogic
 {
     class NWSWeatherResponse : WeatherResponse
     {
+        public static NWSCityList cityList = new NWSCityList();
         private NDFDgenByDay.dwml information;
+
+        public static NWSWeatherResponse fetchResponse(String cityName)
+        {
+            City city = cityList.getCityByName(cityName);
+            ndfdXML request = new ndfdXML();
+            string response = request.NDFDgenByDay(city.latitude, city.longitude, DateTime.Now, "10", unitType.e, formatType.Item24hourly);
+
+            XmlSerializer serializer = new XmlSerializer(typeof(Entities.NDFDgenByDay.dwml));
+
+            Entities.NDFDgenByDay.dwml weather = (Entities.NDFDgenByDay.dwml)serializer.Deserialize(new MemoryStream(Encoding.UTF8.GetBytes(response)));
+
+            return new NWSWeatherResponse(weather);
+        }
 
         public NWSWeatherResponse(NDFDgenByDay.dwml parsedXML)
         {

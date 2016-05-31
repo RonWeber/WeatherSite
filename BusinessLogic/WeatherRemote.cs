@@ -1,23 +1,15 @@
-﻿using BusinessLogic.gov.weather.graphical;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml;
-using System.Xml.Linq;
-using System.Xml.Serialization;
 
 namespace BusinessLogic
 {
-    
+
 
     public class WeatherRemote
     {
-        public NWSCityList cityList = new NWSCityList();
+        
 
         public WeatherRemote()
         {
@@ -57,16 +49,8 @@ namespace BusinessLogic
 
         public WeatherResponse GetWeatherNWS(String cityName)
         {
-            City city = cityList.getCityByName(cityName);
-            ndfdXML request = new ndfdXML();
-            string response = request.NDFDgenByDay(city.latitude, city.longitude, DateTime.Now, "10", unitType.e, formatType.Item24hourly);
-
-            XmlSerializer serializer = new XmlSerializer(typeof(Entities.NDFDgenByDay.dwml));
-
-            Entities.NDFDgenByDay.dwml weather = (Entities.NDFDgenByDay.dwml)serializer.Deserialize(new MemoryStream(Encoding.UTF8.GetBytes(response)));
-
-
-            return new NWSWeatherResponse(weather);
+            if (cityName == null) return new ErrorWeatherResponse("No city name was given.");
+            return CachedResponse.getResponse(cityName);
         }
     }
 }

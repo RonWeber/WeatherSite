@@ -47,9 +47,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CachedResponse.cs" />
     <Compile Include="Entities\City.cs" />
     <Compile Include="DailyWeatherResponse.cs" />
     <Compile Include="Entities\NDFDgenByDay.cs" />
+    <Compile Include="ErrorWeatherResponse.cs" />
     <Compile Include="NWSCityList.cs" />
     <Compile Include="HourlyWeatherResponse.cs" />
     <Compile Include="NWSWeatherResponse.cs" />
