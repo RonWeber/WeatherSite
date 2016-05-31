@@ -27,8 +27,5 @@ namespace weather_mvc.Controllers
             ViewBag.responseHTML = resp.getHTML();
             return View();
         }
-
-        
-       
     }
 }

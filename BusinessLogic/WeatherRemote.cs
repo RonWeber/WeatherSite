@@ -49,7 +49,7 @@ namespace BusinessLogic
 
         public WeatherResponse GetWeatherNWS(String cityName)
         {
-            if (cityName == null) return new ErrorWeatherResponse("No city name was given.");
+            if (String.IsNullOrEmpty(cityName)) return new ErrorWeatherResponse("No city name was given.");
             return CachedResponse.getResponse(cityName);
         }
     }
