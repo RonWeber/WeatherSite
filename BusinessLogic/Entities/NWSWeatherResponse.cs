@@ -45,7 +45,8 @@ namespace BusinessLogic.Entities
             {
                 table += "<tr>";
                 table += "<td>" + information.data.timelayout[0].Items[i] + "</td>";
-                table += "<td>" + "<img class=\"weather_icon\" src=\"" + information.data.parameters.conditionsicon.iconlink[i / 2] + "\" />";
+                if (information?.data?.parameters?.conditionsicon?.iconlink[i/2] != null)
+                    table += "<td>" + "<img class=\"weather_icon\" src=\"" + information.data.parameters.conditionsicon.iconlink[i / 2] + "\" />";
                 table += information.data.parameters.weather.weatherconditions[i / 2].weathersummary + "</td>";
                 table += "<td>" + information.data.parameters.temperature[1].value[i / 2] + "</td>";
                 table += "<td>" + information.data.parameters.temperature[0].value[i / 2] + "</td>";
