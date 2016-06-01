@@ -39,7 +39,7 @@ namespace BusinessLogic.Entities
                 return "<p>Error.</p>";
             }
             string table = "<table class=\"table table-striped table-bordered\" id=\"weatherTable\">";
-            table += "<tr><th>Time</th><th>Weather Type</th><th>" + information.data.parameters.temperature[1].name + "</th><th>" + information.data.parameters.temperature[0].name + "</th>";
+            table += "<tr><th>Time</th><th>Weather Type</th><th>" + information.data.parameters.temperature[1].name + "</th><th>" + information.data.parameters.temperature[0].name + "</th><th>Precipitation Chance</th>";
             table += "</tr>";
             for (int i = 1; i < information.data.timelayout[0].Items.Length; i += 2)
             {
@@ -51,6 +51,7 @@ namespace BusinessLogic.Entities
                     table += information.data.parameters.weather.weatherconditions[i / 2].weathersummary + "</td>";
                 table += "<td>" + information.data.parameters.temperature[1].value[i / 2] + "</td>";
                 table += "<td>" + information.data.parameters.temperature[0].value[i / 2] + "</td>";
+                table += "<td>" + information.data.parameters.probabilityofprecipitation.value[i] + "</td>";
                 table += "</tr>";
             }
 
