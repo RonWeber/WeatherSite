@@ -4,15 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BusinessLogic
+namespace BusinessLogic.Entities
 {
-    class HourlyWeatherResponse : WeatherResponse
+    public class DailyWeatherResponse : WeatherResponse
     {
         public City city { get; set; }
         public string cod { get; set; }
         public string message { get; set; }
         public int cnt { get; set; }
-        public List<HourlyItem> list { get; set; }
+        public List<DailyItem> list { get; set; }
 
         public class City
         {
@@ -26,22 +26,25 @@ namespace BusinessLogic
             public float lat { get; set; }
             public float lon { get; set; }
         }
-        public class HourlyItem
+        public class DailyItem
         {
             public string dt { get; set; }
-            public Main main;
-            public List<Weather> weather { get; set; }
-            public string dt_txt { get; set; }
-        }
-        public class Main
-        {
-            public string temp { get; set; }
-            public string temp_min { get; set; }
-            public string temp_max { get; set; }
+            public Temp temp { get; set; }
             public string pressure { get; set; }
-            public string sea_level { get; set; }
-            public string grnd_level { get; set; }
             public string humidity { get; set; }
+            public List<Weather> weather { get; set; }
+            public string speed { get; set; }
+            public string deg { get; set; }
+            public string clouds { get; set; }
+        }
+        public class Temp
+        {
+            public string day { get; set; }
+            public string min { get; set; }
+            public string max { get; set; }
+            public string night { get; set; }
+            public string eve { get; set; }
+            public string morn { get; set; }
         }
         public class Weather
         {
@@ -60,22 +63,26 @@ namespace BusinessLogic
             //Generate a table based on the json response.
             string table = "<b>" + city.name + "</b><br/>";
             table += "<table id=\"weatherTable\">";
-            table += "<tr><th>Time</th><th>Weather</th><th>Temperature</th><th>Humidity</th>";
+            table += "";
+            table += "<tr><th>Day</th><th>Weather</th><th>Temperature Low</th><th>Temperature High</th><th>Humidity</th>";
             table += "</tr>";
-            foreach (HourlyItem item in list)
+            foreach (DailyItem item in list)
             {
                 table += "<tr>";
                 DateTime date = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
                 date = date.AddSeconds((double)(int.Parse(item.dt)));
-                table += "<td>" + date.ToString() + "</td>";
+                table += "<td>" + date.ToShortDateString() + "</td>";
                 table += "<td>" + "<img class=\"weather_icon\" src=\"http://openweathermap.org/img/w/" + item.weather[0].icon + ".png\" />";
                 table += item.weather[0].description + "</td>";
-                table += "<td>" + item.main.temp + "</td>";
-                table += "<td>" + item.main.humidity + "%</td>";
+                table += "<td>" + item.temp.min + "</td>";
+                table += "<td>" + item.temp.max + "</td>";
+                if (item.humidity != null)
+                    table += "<td>" + item.humidity + "%</td>";
                 table += "</tr>";
             }
             table += "</table>";
             return table;
         }
+
     }
 }

@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using BusinessLogic.Entities;
+using Newtonsoft.Json;
 using System;
 using System.IO;
 using System.Net;
@@ -7,11 +8,11 @@ namespace BusinessLogic
 {
 
 
-    public class WeatherRemote
+    public class WeatherLogic
     {
         
 
-        public WeatherRemote()
+        public WeatherLogic()
         {
      
         }

@@ -1,4 +1,5 @@
 ﻿using BusinessLogic;
+using BusinessLogic.Entities;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
@@ -20,7 +21,7 @@ namespace weather_mvc.Controllers
 
         public ActionResult WeatherAnswer(String location, String timescale = "daily")
         {
-            WeatherRemote wr = new WeatherRemote();
+            WeatherLogic wr = new WeatherLogic();
             //WeatherResponse resp = wr.GetWeatherOpenWeatherMap(location, timescale);
             WeatherResponse resp = wr.GetWeatherNWS(location);
           

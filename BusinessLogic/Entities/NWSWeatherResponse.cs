@@ -8,11 +8,11 @@ using BusinessLogic.gov.weather.graphical;
 using System.Xml.Serialization;
 using System.IO;
 
-namespace BusinessLogic
+namespace BusinessLogic.Entities
 {
     class NWSWeatherResponse : WeatherResponse
     {
-        public static NWSCityList cityList = new NWSCityList();
+        public static CityLogic cityList = new CityLogic();
         private NDFDgenByDay.dwml information;
 
         public static NWSWeatherResponse fetchResponse(String cityName)

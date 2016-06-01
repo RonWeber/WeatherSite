@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 
-namespace BusinessLogic
+namespace BusinessLogic.Entities
 {
     public class City
     {

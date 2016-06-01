@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BusinessLogic.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,11 +8,11 @@ using System.Xml.Linq;
 
 namespace BusinessLogic
 {
-    public class NWSCityList
+    public class CityLogic
     {
         private List<City> list = new List<City>();
 
-        public NWSCityList()
+        public CityLogic()
         {
             //TODO: Cache this or do it asynchronously.
             list = createCityList(); 
