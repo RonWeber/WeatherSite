@@ -8,30 +8,30 @@ namespace BusinessLogic.Entities
 {
     class CachedResponse
     {
-        private string cityName;
+        private City city;
         private DateTime dateAdded;
         private NWSWeatherResponse response;
 
-        private static Dictionary<String, CachedResponse> cache = new Dictionary<string, CachedResponse>();
+        private static Dictionary<City, CachedResponse> cache = new Dictionary<City, CachedResponse>();
         private const int CACHE_LENGTH_MINUTES = 60;
 
-        public CachedResponse(String cityName, NWSWeatherResponse response)
+        public CachedResponse(City city, NWSWeatherResponse response)
         {
-            this.cityName = cityName;
+            this.city = city;
             this.response = response;
             this.dateAdded = DateTime.Now;
         }
 
-        public static NWSWeatherResponse getResponse(String cityName)
+        public static NWSWeatherResponse getResponse(City city)
         {
-            if (!cache.ContainsKey(cityName) || cache[cityName].dateAdded.AddMinutes(CACHE_LENGTH_MINUTES) < DateTime.Now)
+            if (!cache.ContainsKey(city) || cache[city].dateAdded.AddMinutes(CACHE_LENGTH_MINUTES) < DateTime.Now)
             {
-                cache[cityName] = new CachedResponse(cityName, NWSWeatherResponse.fetchResponse(cityName));
-                return cache[cityName].response;
+                cache[city] = new CachedResponse(city, NWSWeatherResponse.fetchResponse(city));
+                return cache[city].response;
             }
             else
             {
-                return cache[cityName].response;
+                return cache[city].response;
             }
         }
     }

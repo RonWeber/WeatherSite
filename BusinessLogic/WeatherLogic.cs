@@ -6,11 +6,10 @@ using System.Net;
 
 namespace BusinessLogic
 {
-
-
     public class WeatherLogic
     {
-        
+
+        public static CityLogic cityList = new CityLogic();
 
         public WeatherLogic()
         {
@@ -51,7 +50,9 @@ namespace BusinessLogic
         public WeatherResponse GetWeatherNWS(String cityName)
         {
             if (String.IsNullOrEmpty(cityName)) return new ErrorWeatherResponse("No city name was given.");
-            return CachedResponse.getResponse(cityName);
+            City city = cityList.getCityByName(cityName);
+            if (city == null) return new ErrorWeatherResponse("No city with this name was found.");
+            return CachedResponse.getResponse(city);
         }
     }
 }

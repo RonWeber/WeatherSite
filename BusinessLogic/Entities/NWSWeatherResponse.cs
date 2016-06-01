@@ -12,12 +12,11 @@ namespace BusinessLogic.Entities
 {
     class NWSWeatherResponse : WeatherResponse
     {
-        public static CityLogic cityList = new CityLogic();
+        
         private NDFDgenByDay.dwml information;
 
-        public static NWSWeatherResponse fetchResponse(String cityName)
+        public static NWSWeatherResponse fetchResponse(City city)
         {
-            City city = cityList.getCityByName(cityName);
             ndfdXML request = new ndfdXML();
             string response = request.NDFDgenByDay(city.latitude, city.longitude, DateTime.Now, "10", unitType.e, formatType.Item24hourly);
 
