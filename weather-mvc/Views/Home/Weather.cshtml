@@ -7,21 +7,24 @@
 @Styles.Render("~/Content/bootstrap.css")
 @Styles.Render("~/Content/weather.css")
         
-<div class="col-md-4 col-md-offset-4">
-    <h4>Enter city: </h4>
-    <div class="input-group ">
-        @Html.TextBox("location", "", new { @class = "form-control", @id = "inputText"})
-        <span class="input-group-btn"><input type="submit" value="Get weather" class="btn btn-primary" id="submitButton"/></span>
+<div class="grid">
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4">
+            <h4>Enter city: </h4>
+            <div class="input-group ">
+                @Html.TextBox("location", "", new { @class = "form-control", @id = "inputText"})
+                <span class="input-group-btn"><input type="submit" value="Get weather" class="btn btn-primary" id="submitButton"/></span>
+            </div>
+            <br />
+            <p>@Html.RadioButton("timescale", "daily", true) Daily Forecast</p>
+            <p>@Html.RadioButton("timescale", "hourly", false) 3 Hour Forecast</p>
+        </div>
     </div>
-    <br />
-    <p>@Html.RadioButton("timescale", "daily", true) Daily Forecast</p>
-    <p>@Html.RadioButton("timescale", "hourly", false) 3 Hour Forecast</p>
-</div>
-<br />
-<br />
-<div id="responseContainer">
+    <div id="responseContainer" class="row">
 
+    </div>
 </div>
+
 
 <script type="text/javascript">
     $(document).ready(function () {
