@@ -195,6 +195,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Weather.cshtml" />
     <Content Include="Views\Home\WeatherAnswer.cshtml" />
+    <Content Include="Views\Home\WeatherAnswerPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

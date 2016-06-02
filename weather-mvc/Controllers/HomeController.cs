@@ -28,5 +28,15 @@ namespace weather_mvc.Controllers
             ViewBag.responseHTML = resp.getHTML();
             return View();
         }
+
+        public ActionResult WeatherAnswerPartial(String location, String timescale = "daily")
+        {
+            WeatherLogic wr = new WeatherLogic();
+            //WeatherResponse resp = wr.GetWeatherOpenWeatherMap(location, timescale);
+            WeatherResponse resp = wr.GetWeatherNWS(location);
+
+            ViewBag.responseHTML = resp.getHTML();
+            return PartialView();
+        }
     }
 }
