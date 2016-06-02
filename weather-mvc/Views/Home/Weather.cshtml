@@ -31,7 +31,7 @@
         $('#submitButton').click(function () {
             var requestedCity = document.getElementById("inputText").value;
             $('#responseContainer').text("Loading...");
-            $('#responseContainer').load('@Url.Action("WeatherAnswerPartial", "Home")?location=' + requestedCity);
+            $('#responseContainer').load('@Url.Action("WeatherAnswerPartial", "Home")?location=' + encodeURIComponent(requestedCity));
         });
     });
 </script>
