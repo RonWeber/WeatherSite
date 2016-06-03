@@ -7,15 +7,14 @@ using System.Xml.Serialization;
 
 namespace BusinessLogic.Entities
 {
-    public class NDFDgenByDay
+    public class NDFDgenHourly
     {
 
-        /// <remarks/>0
-        //[System.SerializableAttribute()]
-        [Serializable, XmlRoot("dwml")]
+        /// <remarks/>
+        [System.SerializableAttribute()]
         [System.ComponentModel.DesignerCategoryAttribute("code")]
         [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
-        //[System.Xml.Serialization.XmlRootAttribute(Namespace = "", IsNullable = false)]
+        [System.Xml.Serialization.XmlRootAttribute(Namespace = "", IsNullable = false)]
         public partial class dwml
         {
 
@@ -692,7 +691,7 @@ namespace BusinessLogic.Entities
         public partial class dwmlDataParameters
         {
 
-            private dwmlDataParametersTemperature[] temperatureField;
+            private dwmlDataParametersTemperature temperatureField;
 
             private dwmlDataParametersProbabilityofprecipitation probabilityofprecipitationField;
 
@@ -705,8 +704,7 @@ namespace BusinessLogic.Entities
             private string applicablelocationField;
 
             /// <remarks/>
-            [System.Xml.Serialization.XmlElementAttribute("temperature")]
-            public dwmlDataParametersTemperature[] temperature
+            public dwmlDataParametersTemperature temperature
             {
                 get
                 {
@@ -796,7 +794,7 @@ namespace BusinessLogic.Entities
 
             private string nameField;
 
-            private string[] valueField;
+            private String[] valueField;
 
             private string typeField;
 
@@ -818,8 +816,8 @@ namespace BusinessLogic.Entities
             }
 
             /// <remarks/>
-            [System.Xml.Serialization.XmlElementAttribute("value", IsNullable = true)]
-            public string[] value
+            [System.Xml.Serialization.XmlElementAttribute("value")]
+            public String[] value
             {
                 get
                 {
@@ -883,7 +881,7 @@ namespace BusinessLogic.Entities
 
             private string nameField;
 
-            private string[] valueField;
+            private byte[] valueField;
 
             private string typeField;
 
@@ -905,8 +903,8 @@ namespace BusinessLogic.Entities
             }
 
             /// <remarks/>
-            [System.Xml.Serialization.XmlElementAttribute("value", IsNullable = true)]
-            public string[] value
+            [System.Xml.Serialization.XmlElementAttribute("value")]
+            public byte[] value
             {
                 get
                 {
@@ -1025,8 +1023,6 @@ namespace BusinessLogic.Entities
 
             private dwmlDataParametersWeatherWeatherconditionsValue[] valueField;
 
-            private string weathersummaryField;
-
             /// <remarks/>
             [System.Xml.Serialization.XmlElementAttribute("value")]
             public dwmlDataParametersWeatherWeatherconditionsValue[] value
@@ -1040,20 +1036,6 @@ namespace BusinessLogic.Entities
                     this.valueField = value;
                 }
             }
-
-            /// <remarks/>
-            [System.Xml.Serialization.XmlAttributeAttribute("weather-summary")]
-            public string weathersummary
-            {
-                get
-                {
-                    return this.weathersummaryField;
-                }
-                set
-                {
-                    this.weathersummaryField = value;
-                }
-            }
         }
 
         /// <remarks/>
@@ -1062,6 +1044,8 @@ namespace BusinessLogic.Entities
         [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
         public partial class dwmlDataParametersWeatherWeatherconditionsValue
         {
+
+            private object visibilityField;
 
             private string coverageField;
 
@@ -1072,6 +1056,20 @@ namespace BusinessLogic.Entities
             private string qualifierField;
 
             private string additiveField;
+
+            /// <remarks/>
+            [System.Xml.Serialization.XmlElementAttribute(IsNullable = true)]
+            public object visibility
+            {
+                get
+                {
+                    return this.visibilityField;
+                }
+                set
+                {
+                    this.visibilityField = value;
+                }
+            }
 
             /// <remarks/>
             [System.Xml.Serialization.XmlAttributeAttribute()]
@@ -1224,7 +1222,7 @@ namespace BusinessLogic.Entities
 
             private string nameField;
 
-            private object hazardconditionsField;
+            private object[] hazardconditionsField;
 
             private string timelayoutField;
 
@@ -1242,8 +1240,8 @@ namespace BusinessLogic.Entities
             }
 
             /// <remarks/>
-            [System.Xml.Serialization.XmlElementAttribute("hazard-conditions", IsNullable = true)]
-            public object hazardconditions
+            [System.Xml.Serialization.XmlElementAttribute("hazard-conditions")]
+            public object[] hazardconditions
             {
                 get
                 {
@@ -1269,6 +1267,8 @@ namespace BusinessLogic.Entities
                 }
             }
         }
+
+
 
     }
 }

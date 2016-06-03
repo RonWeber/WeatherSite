@@ -33,5 +33,8 @@
             $('#responseContainer').text("Loading...");
             $('#responseContainer').load('@Url.Action("WeatherAnswerPartial", "Home")?location=' + encodeURIComponent(requestedCity));
         });
+        $('#inputText').keyup(function (e) {
+            if (e.keyCode == 13) $('#submitButton').click();
+        });
     });
 </script>
