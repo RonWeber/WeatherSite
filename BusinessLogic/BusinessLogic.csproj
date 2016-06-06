@@ -47,14 +47,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Entities\CachedResponse.cs" />
+    <Compile Include="Entities\CachedDailyResponse.cs" />
+    <Compile Include="Entities\CachedHourlyResponse.cs" />
     <Compile Include="Entities\City.cs" />
-    <Compile Include="Entities\DailyWeatherResponse.cs" />
+    <Compile Include="Entities\NWSDailyWeatherResponse.cs" />
+    <Compile Include="Entities\OWMDailyWeatherResponse.cs" />
+    <Compile Include="Entities\NDFDgenByDay.cs" />
     <Compile Include="Entities\NDFDgenHourly.cs" />
     <Compile Include="Entities\ErrorWeatherResponse.cs" />
     <Compile Include="CityLogic.cs" />
-    <Compile Include="Entities\HourlyWeatherResponse.cs" />
-    <Compile Include="Entities\NWSWeatherResponse.cs" />
+    <Compile Include="Entities\OWMHourlyWeatherResponse.cs" />
+    <Compile Include="Entities\NWSHourlyWeatherResponse.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>

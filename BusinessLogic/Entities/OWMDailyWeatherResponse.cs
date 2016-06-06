@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BusinessLogic.Entities
 {
-    public class DailyWeatherResponse : WeatherResponse
+    public class OWMDailyWeatherResponse : WeatherResponse
     {
         public City city { get; set; }
         public string cod { get; set; }

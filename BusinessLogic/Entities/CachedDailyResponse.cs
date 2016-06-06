@@ -6,27 +6,30 @@ using System.Threading.Tasks;
 
 namespace BusinessLogic.Entities
 {
-    class CachedResponse
+    //CachedDailyResponse and CachedHourlyResponse are two different classes, as opposed to a generic type
+    //because responses are created with a static method (because of serialization), and generic types
+    //can't call static methods.
+    class CachedDailyResponse
     {
         private City city;
         private DateTime dateAdded;
-        private NWSWeatherResponse response;
+        private NWSDailyWeatherResponse response;
 
-        private static Dictionary<City, CachedResponse> cache = new Dictionary<City, CachedResponse>();
+        private static Dictionary<City, CachedDailyResponse> cache = new Dictionary<City, CachedDailyResponse>();
         private const int CACHE_LENGTH_MINUTES = 60;
 
-        public CachedResponse(City city, NWSWeatherResponse response)
+        public CachedDailyResponse(City city, NWSDailyWeatherResponse response)
         {
             this.city = city;
             this.response = response;
             this.dateAdded = DateTime.Now;
         }
 
-        public static NWSWeatherResponse getResponse(City city)
+        public static NWSDailyWeatherResponse getResponse(City city)
         {
             if (!cache.ContainsKey(city) || cache[city].dateAdded.AddMinutes(CACHE_LENGTH_MINUTES) < DateTime.Now)
             {
-                cache[city] = new CachedResponse(city, NWSWeatherResponse.fetchResponse(city));
+                cache[city] = new CachedDailyResponse(city, NWSDailyWeatherResponse.fetchResponse(city));
                 return cache[city].response;
             }
             else

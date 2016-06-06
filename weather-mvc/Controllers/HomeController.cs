@@ -23,7 +23,7 @@ namespace weather_mvc.Controllers
         {
             WeatherLogic wr = new WeatherLogic();
             //WeatherResponse resp = wr.GetWeatherOpenWeatherMap(location, timescale);
-            WeatherResponse resp = wr.GetWeatherNWS(location);
+            WeatherResponse resp = wr.GetWeatherNWS(location, timescale.Equals("daily"));
           
             ViewBag.responseHTML = resp.getHTML();
             return View();
@@ -33,7 +33,7 @@ namespace weather_mvc.Controllers
         {
             WeatherLogic wr = new WeatherLogic();
             //WeatherResponse resp = wr.GetWeatherOpenWeatherMap(location, timescale);
-            WeatherResponse resp = wr.GetWeatherNWS(location);
+            WeatherResponse resp = wr.GetWeatherNWS(location, timescale.Equals("daily"));
 
             ViewBag.responseHTML = resp.getHTML();
             return PartialView();

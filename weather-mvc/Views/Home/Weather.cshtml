@@ -30,8 +30,10 @@
     $(document).ready(function () {
         $('#submitButton').click(function () {
             var requestedCity = document.getElementById("inputText").value;
+            var timescale = $('input[name=timescale]:checked').val();
             $('#responseContainer').text("Loading...");
-            $('#responseContainer').load('@Url.Action("WeatherAnswerPartial", "Home")?location=' + encodeURIComponent(requestedCity));
+            $('#responseContainer').load('@Url.Action("WeatherAnswerPartial", "Home")?location=' + encodeURIComponent(requestedCity)
+                + '&timescale=' + encodeURIComponent(timescale));
         });
         $('#inputText').keyup(function (e) {
             if (e.keyCode == 13) $('#submitButton').click();

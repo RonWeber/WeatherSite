@@ -37,9 +37,9 @@ namespace BusinessLogic
                     string s = reader.ReadToEnd();
                     WeatherResponse obj;
                     if (isDaily)
-                        obj = JsonConvert.DeserializeObject<DailyWeatherResponse>(s);
+                        obj = JsonConvert.DeserializeObject<OWMDailyWeatherResponse>(s);
                     else
-                        obj = JsonConvert.DeserializeObject<HourlyWeatherResponse>(s);
+                        obj = JsonConvert.DeserializeObject<OWMHourlyWeatherResponse>(s);
                     return obj;
                 }
             }
@@ -47,12 +47,19 @@ namespace BusinessLogic
 
         }
 
-        public WeatherResponse GetWeatherNWS(String cityName)
+        public WeatherResponse GetWeatherNWS(String cityName, bool isDaily)
         {
             if (String.IsNullOrEmpty(cityName)) return new ErrorWeatherResponse("No city name was given.");
             City city = cityList.getCityByName(cityName);
             if (city == null) return new ErrorWeatherResponse("No city with this name was found.");
-            return CachedResponse.getResponse(city);
+            if (isDaily)
+            {
+                return CachedDailyResponse.getResponse(city);
+            }
+            else
+            {
+                return CachedHourlyResponse.getResponse(city);
+            }
         }
     }
 }

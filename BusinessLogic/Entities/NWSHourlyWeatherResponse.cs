@@ -10,12 +10,12 @@ using System.IO;
 
 namespace BusinessLogic.Entities
 {
-    class NWSWeatherResponse : WeatherResponse
+    class NWSHourlyWeatherResponse : WeatherResponse
     {
         
         private NDFDgenHourly.dwml information;
 
-        public static NWSWeatherResponse fetchResponse(City city)
+        public static NWSHourlyWeatherResponse fetchResponse(City city)
         {
             ndfdXML request = new ndfdXML();
             weatherParametersType parameters = new weatherParametersType();
@@ -28,10 +28,10 @@ namespace BusinessLogic.Entities
 
             Entities.NDFDgenHourly.dwml weather = (Entities.NDFDgenHourly.dwml)serializer.Deserialize(new MemoryStream(Encoding.UTF8.GetBytes(response)));
 
-            return new NWSWeatherResponse(weather);
+            return new NWSHourlyWeatherResponse(weather);
         }
 
-        public NWSWeatherResponse(NDFDgenHourly.dwml parsedXML)
+        public NWSHourlyWeatherResponse(NDFDgenHourly.dwml parsedXML)
         {
             information = parsedXML;
         }
