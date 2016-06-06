@@ -49,7 +49,7 @@ namespace BusinessLogic.Entities
             for (int i = 0; i < threeHourInterval.Count; i++)
             {
                 table += "<tr>";
-                table += "<td>" + threeHourInterval[i].ToString() + "</td>";
+                table += "<td><b>" + threeHourInterval[i].DayOfWeek + "</b>&nbsp" + threeHourInterval[i].ToString() + "</td>";
                 table += "<td>" + "<img class=\"weather_icon\" src=\"" + information.data.parameters.conditionsicon.iconlink[i] + "\" />";
                 if (information.data.parameters.weather.weatherconditions[i].value != null)
                     table += information.data.parameters.weather.weatherconditions[i].value[0].coverage + " " + information.data.parameters.weather.weatherconditions[i].value[0].weathertype;
