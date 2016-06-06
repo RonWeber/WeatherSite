@@ -26,7 +26,7 @@ namespace BusinessLogic.Entities
 
             XmlSerializer serializer = new XmlSerializer(typeof(Entities.NDFDgenHourly.dwml));
 
-            Entities.NDFDgenHourly.dwml weather = (Entities.NDFDgenHourly.dwml)serializer.Deserialize(new MemoryStream(Encoding.UTF8.GetBytes(response)));
+            NDFDgenHourly.dwml weather = (Entities.NDFDgenHourly.dwml)serializer.Deserialize(new MemoryStream(Encoding.UTF8.GetBytes(response)));
 
             return new NWSHourlyWeatherResponse(weather);
         }
@@ -43,11 +43,12 @@ namespace BusinessLogic.Entities
                 return "<p>Error.</p>";
             }
             string table = "<table class=\"table table-striped table-bordered\" id=\"weatherTable\">";
-            table += "<tr><th>Time</th><th>Weather Type</th><th>Temperature</th><th>Relative Humidity</th>";
+            table += "<tr><th>Time</th><th>Weather Type</th><th>Temperature</th><th>Relative Humidity</th><th>12h Precipitation Chance</th>";
             table += "</tr>";
             List<DateTime> threeHourInterval = getStartTimes(information.data.timelayout[1]);
             for (int i = 0; i < threeHourInterval.Count; i++)
             {
+                int whereWeAreIn12h = getTimeLayoutIndex(threeHourInterval[i], getStartTimes(information.data.timelayout[0]));
                 table += "<tr>";
                 table += "<td><b>" + threeHourInterval[i].DayOfWeek + "</b>&nbsp" + threeHourInterval[i].ToString() + "</td>";
                 table += "<td>" + "<img class=\"weather_icon\" src=\"" + information.data.parameters.conditionsicon.iconlink[i] + "\" />";
@@ -58,6 +59,7 @@ namespace BusinessLogic.Entities
                 table += "</td>";
                 table += "<td>" + information.data.parameters.temperature.value[i] + "</td>";
                 table += "<td>" + information.data.parameters.humidity.value[i] + "%</td>";
+                table += "<td>" + information.data.parameters.probabilityofprecipitation.value[whereWeAreIn12h] + "%</td>";
                 table += "</tr>";
             }
 
