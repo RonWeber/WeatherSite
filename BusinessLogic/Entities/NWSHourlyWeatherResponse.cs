@@ -45,23 +45,50 @@ namespace BusinessLogic.Entities
             string table = "<table class=\"table table-striped table-bordered\" id=\"weatherTable\">";
             table += "<tr><th>Time</th><th>Weather Type</th><th>Temperature</th><th>Relative Humidity</th>";
             table += "</tr>";
-            for (int i = 1; i < information.data.timelayout[1].Items.Length; i++)
+            List<DateTime> threeHourInterval = getStartTimes(information.data.timelayout[1]);
+            for (int i = 0; i < threeHourInterval.Count; i++)
             {
                 table += "<tr>";
-                table += "<td>" + information.data.timelayout[1].Items[i] + "</td>";
-                table += "<td>" + "<img class=\"weather_icon\" src=\"" + information.data.parameters.conditionsicon.iconlink[i - 1] + "\" />";
-                if (information.data.parameters.weather.weatherconditions[i - 1].value != null)
-                    table += information.data.parameters.weather.weatherconditions[i - 1].value[0].coverage + " " + information.data.parameters.weather.weatherconditions[i - 1].value[0].weathertype;
+                table += "<td>" + threeHourInterval[i].ToString() + "</td>";
+                table += "<td>" + "<img class=\"weather_icon\" src=\"" + information.data.parameters.conditionsicon.iconlink[i] + "\" />";
+                if (information.data.parameters.weather.weatherconditions[i].value != null)
+                    table += information.data.parameters.weather.weatherconditions[i].value[0].coverage + " " + information.data.parameters.weather.weatherconditions[i].value[0].weathertype;
                 else
                     table += "clear";
                 table += "</td>";
-                table += "<td>" + information.data.parameters.temperature.value[i - 1] + "</td>";
-                table += "<td>" + information.data.parameters.humidity.value[i - 1] + "%</td>";
+                table += "<td>" + information.data.parameters.temperature.value[i] + "</td>";
+                table += "<td>" + information.data.parameters.humidity.value[i] + "%</td>";
                 table += "</tr>";
             }
 
             table += "</table>";
             return table;
         }
+
+        //Gets the index of the nearest time >= currentTime in the time layout specified by layout.
+        //Assumes time is in chronological order.
+        private int getTimeLayoutIndex(DateTime currentTime, List<DateTime> startTimes)
+        {
+            for (int i = 0; i < startTimes.Count; i++)
+            {
+                if (currentTime < startTimes[i]) return i - 1;
+            }
+            return startTimes.Count - 1;
+        }
+
+        //Gets only the start times from a timeLayout
+        private List<DateTime> getStartTimes(NDFDgenHourly.dwmlDataTimelayout layout)
+        {
+            List<DateTime> result = new List<DateTime>();
+            for (int i = 0; i < layout.Items.Length; i++)
+            {
+                if (layout.ItemsElementName[i] == NDFDgenHourly.ItemsChoiceType.startvalidtime)
+                {
+                    result.Add((DateTime)layout.Items[i]);
+                }
+            }
+            return result;
+        }
     }
+
 }
