@@ -48,7 +48,8 @@ namespace BusinessLogic.Entities
             for (int i = 1; i < information.data.timelayout[1].Items.Length; i++)
             {
                 table += "<tr>";
-                table += "<td>" + information.data.timelayout[1].Items[i] + "</td>";
+                DateTime dt = (DateTime)information.data.timelayout[1].Items[i];
+                table += "<td><b>" + dt.DayOfWeek + "</b>&nbsp" + dt + "</td>";
                 table += "<td>" + "<img class=\"weather_icon\" src=\"" + information.data.parameters.conditionsicon.iconlink[i - 1] + "\" />";
                 if (information.data.parameters.weather.weatherconditions[i - 1].value != null)
                     table += information.data.parameters.weather.weatherconditions[i - 1].value[0].coverage + " " + information.data.parameters.weather.weatherconditions[i - 1].value[0].weathertype;
