@@ -20,7 +20,7 @@ namespace BusinessLogic.Entities
             ndfdXML request = new ndfdXML();
             weatherParametersType parameters = new weatherParametersType();
             parameters.temp = true; parameters.pop12 = true; parameters.wx = true; parameters.icons = true;
-            parameters.wwa = true;
+            parameters.wwa = true;  parameters.rh = true;
             string response = request.NDFDgen(city.latitude, city.longitude, productType.timeseries, DateTime.Now, 
                 DateTime.Now.AddDays(8), unitType.e, parameters);
 
@@ -43,7 +43,7 @@ namespace BusinessLogic.Entities
                 return "<p>Error.</p>";
             }
             string table = "<table class=\"table table-striped table-bordered\" id=\"weatherTable\">";
-            table += "<tr><th>Time</th><th>Weather Type</th><th>Temperature</th>";
+            table += "<tr><th>Time</th><th>Weather Type</th><th>Temperature</th><th>Relative Humidity</th>";
             table += "</tr>";
             for (int i = 1; i < information.data.timelayout[1].Items.Length; i++)
             {
@@ -56,6 +56,7 @@ namespace BusinessLogic.Entities
                     table += "clear";
                 table += "</td>";
                 table += "<td>" + information.data.parameters.temperature.value[i - 1] + "</td>";
+                table += "<td>" + information.data.parameters.humidity.value[i - 1] + "%</td>";
                 table += "</tr>";
             }
 

@@ -695,6 +695,8 @@ namespace BusinessLogic.Entities
 
             private dwmlDataParametersProbabilityofprecipitation probabilityofprecipitationField;
 
+            private dwmlDataParametersHumidity humidityField;
+
             private dwmlDataParametersWeather weatherField;
 
             private dwmlDataParametersConditionsicon conditionsiconField;
@@ -727,6 +729,19 @@ namespace BusinessLogic.Entities
                 set
                 {
                     this.probabilityofprecipitationField = value;
+                }
+            }
+
+            /// <remarks/>
+            public dwmlDataParametersHumidity humidity
+            {
+                get
+                {
+                    return this.humidityField;
+                }
+                set
+                {
+                    this.humidityField = value;
                 }
             }
 
@@ -794,7 +809,7 @@ namespace BusinessLogic.Entities
 
             private string nameField;
 
-            private String[] valueField;
+            private string[] valueField;
 
             private string typeField;
 
@@ -817,7 +832,7 @@ namespace BusinessLogic.Entities
 
             /// <remarks/>
             [System.Xml.Serialization.XmlElementAttribute("value")]
-            public String[] value
+            public string[] value
             {
                 get
                 {
@@ -881,7 +896,7 @@ namespace BusinessLogic.Entities
 
             private string nameField;
 
-            private byte[] valueField;
+            private string[] valueField;
 
             private string typeField;
 
@@ -904,7 +919,94 @@ namespace BusinessLogic.Entities
 
             /// <remarks/>
             [System.Xml.Serialization.XmlElementAttribute("value")]
-            public byte[] value
+            public string[] value
+            {
+                get
+                {
+                    return this.valueField;
+                }
+                set
+                {
+                    this.valueField = value;
+                }
+            }
+
+            /// <remarks/>
+            [System.Xml.Serialization.XmlAttributeAttribute()]
+            public string type
+            {
+                get
+                {
+                    return this.typeField;
+                }
+                set
+                {
+                    this.typeField = value;
+                }
+            }
+
+            /// <remarks/>
+            [System.Xml.Serialization.XmlAttributeAttribute()]
+            public string units
+            {
+                get
+                {
+                    return this.unitsField;
+                }
+                set
+                {
+                    this.unitsField = value;
+                }
+            }
+
+            /// <remarks/>
+            [System.Xml.Serialization.XmlAttributeAttribute("time-layout")]
+            public string timelayout
+            {
+                get
+                {
+                    return this.timelayoutField;
+                }
+                set
+                {
+                    this.timelayoutField = value;
+                }
+            }
+        }
+
+        /// <remarks/>
+        [System.SerializableAttribute()]
+        [System.ComponentModel.DesignerCategoryAttribute("code")]
+        [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
+        public partial class dwmlDataParametersHumidity
+        {
+
+            private string nameField;
+
+            private string[] valueField;
+
+            private string typeField;
+
+            private string unitsField;
+
+            private string timelayoutField;
+
+            /// <remarks/>
+            public string name
+            {
+                get
+                {
+                    return this.nameField;
+                }
+                set
+                {
+                    this.nameField = value;
+                }
+            }
+
+            /// <remarks/>
+            [System.Xml.Serialization.XmlElementAttribute("value")]
+            public string[] value
             {
                 get
                 {
@@ -1036,6 +1138,7 @@ namespace BusinessLogic.Entities
                     this.valueField = value;
                 }
             }
+            
         }
 
         /// <remarks/>
@@ -1267,7 +1370,6 @@ namespace BusinessLogic.Entities
                 }
             }
         }
-
 
 
     }
