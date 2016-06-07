@@ -194,7 +194,6 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Weather.cshtml" />
-    <Content Include="Views\Home\WeatherAnswer.cshtml" />
     <Content Include="Views\Home\WeatherAnswerPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>

@@ -19,16 +19,6 @@ namespace weather_mvc.Controllers
             return View();
         }
 
-        public ActionResult WeatherAnswer(String location, String timescale = "daily")
-        {
-            WeatherLogic wr = new WeatherLogic();
-            //WeatherResponse resp = wr.GetWeatherOpenWeatherMap(location, timescale);
-            WeatherResponse resp = wr.GetWeatherNWSbyCity(location, timescale.Equals("daily"));
-          
-            ViewBag.responseHTML = resp.getHTML();
-            return View();
-        }
-
         public ActionResult WeatherAnswerPartial(String location, String timescale = "daily")
         {
             WeatherResponse resp;
