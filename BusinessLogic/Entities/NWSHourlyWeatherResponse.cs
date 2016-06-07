@@ -15,13 +15,13 @@ namespace BusinessLogic.Entities
         
         private NDFDgenHourly.dwml information;
 
-        public static NWSHourlyWeatherResponse fetchResponse(City city)
+        public static NWSHourlyWeatherResponse fetchResponse(LatLong location)
         {
             ndfdXML request = new ndfdXML();
             weatherParametersType parameters = new weatherParametersType();
             parameters.temp = true; parameters.pop12 = true; parameters.wx = true; parameters.icons = true;
             parameters.wwa = true;  parameters.rh = true;
-            string response = request.NDFDgen(city.latitude, city.longitude, productType.timeseries, DateTime.Now, 
+            string response = request.NDFDgen(location.getLatitude(), location.getLongitude(), productType.timeseries, DateTime.Now, 
                 DateTime.Now.AddDays(8), unitType.e, parameters);
 
             XmlSerializer serializer = new XmlSerializer(typeof(Entities.NDFDgenHourly.dwml));

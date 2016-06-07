@@ -3,6 +3,7 @@ using Newtonsoft.Json;
 using System;
 using System.IO;
 using System.Net;
+using System.Xml.Linq;
 
 namespace BusinessLogic
 {
@@ -47,9 +48,9 @@ namespace BusinessLogic
 
         }
 
-        public WeatherResponse GetWeatherNWS(String cityName, bool isDaily)
+        public WeatherResponse GetWeatherNWSbyCity(String cityName, bool isDaily)
         {
-            if (String.IsNullOrEmpty(cityName)) return new ErrorWeatherResponse("No city name was given.");
+            
             City city = cityList.getCityByName(cityName);
             if (city == null) return new ErrorWeatherResponse("No city with this name was found.");
             if (isDaily)
@@ -59,6 +60,26 @@ namespace BusinessLogic
             else
             {
                 return CachedHourlyResponse.getResponse(city);
+            }
+        }
+
+        public WeatherResponse GetWeatherNWSByZIP(String zipCode, bool isDaily)
+        {
+            gov.weather.graphical.ndfdXML ndfd = new gov.weather.graphical.ndfdXML();
+            string xml = ndfd.LatLonListZipCode(zipCode);
+            XDocument xdoc = XDocument.Parse(xml);
+            XElement mainElement = xdoc.Element("dwml");
+            string latLongList = (string)mainElement.Element("latLonList");
+            string[] latAndLong = latLongList.Split(','); //This may fail if we somehow get more than one answer, but since we only asked one question, it shouldn't.
+
+            LatLong location = new LatLong(Decimal.Parse(latAndLong[0]), Decimal.Parse(latAndLong[1]));
+            if (isDaily)
+            {
+                return CachedDailyResponse.getResponse(location);
+            }
+            else
+            {
+                return CachedHourlyResponse.getResponse(location);
             }
         }
     }

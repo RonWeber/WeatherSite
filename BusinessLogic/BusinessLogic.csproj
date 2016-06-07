@@ -50,6 +50,7 @@
     <Compile Include="Entities\CachedDailyResponse.cs" />
     <Compile Include="Entities\CachedHourlyResponse.cs" />
     <Compile Include="Entities\City.cs" />
+    <Compile Include="Entities\LatLong.cs" />
     <Compile Include="Entities\NWSDailyWeatherResponse.cs" />
     <Compile Include="Entities\OWMDailyWeatherResponse.cs" />
     <Compile Include="Entities\NDFDgenByDay.cs" />

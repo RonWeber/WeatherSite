@@ -11,30 +11,30 @@ namespace BusinessLogic.Entities
     //can't call static methods.
     class CachedDailyResponse
     {
-        private City city;
+        private LatLong location;
         private DateTime dateAdded;
         private NWSDailyWeatherResponse response;
 
-        private static Dictionary<City, CachedDailyResponse> cache = new Dictionary<City, CachedDailyResponse>();
+        private static Dictionary<LatLong, CachedDailyResponse> cache = new Dictionary<LatLong, CachedDailyResponse>();
         private const int CACHE_LENGTH_MINUTES = 60;
 
-        public CachedDailyResponse(City city, NWSDailyWeatherResponse response)
+        public CachedDailyResponse(LatLong location, NWSDailyWeatherResponse response)
         {
-            this.city = city;
+            this.location = location;
             this.response = response;
             this.dateAdded = DateTime.Now;
         }
 
-        public static NWSDailyWeatherResponse getResponse(City city)
+        public static NWSDailyWeatherResponse getResponse(LatLong location)
         {
-            if (!cache.ContainsKey(city) || cache[city].dateAdded.AddMinutes(CACHE_LENGTH_MINUTES) < DateTime.Now)
+            if (!cache.ContainsKey(location) || cache[location].dateAdded.AddMinutes(CACHE_LENGTH_MINUTES) < DateTime.Now)
             {
-                cache[city] = new CachedDailyResponse(city, NWSDailyWeatherResponse.fetchResponse(city));
-                return cache[city].response;
+                cache[location] = new CachedDailyResponse(location, NWSDailyWeatherResponse.fetchResponse(location));
+                return cache[location].response;
             }
             else
             {
-                return cache[city].response;
+                return cache[location].response;
             }
         }
     }

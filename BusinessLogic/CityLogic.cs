@@ -33,7 +33,7 @@ namespace BusinessLogic
             string s = w.LatLonListCityNames("1234");
             XDocument xDoc = XDocument.Parse(s);
             XElement mainElement = xDoc.Element("dwml");
-            
+
             string latLongList = (string)mainElement.Element("latLonList");
             string cityNameList = (string)mainElement.Element("cityNameList");
             string[] latLongs = latLongList.Split(' ');

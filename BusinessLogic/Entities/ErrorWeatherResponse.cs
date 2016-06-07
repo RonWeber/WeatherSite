@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BusinessLogic.Entities
 {
-    class ErrorWeatherResponse : WeatherResponse
+    public class ErrorWeatherResponse : WeatherResponse
     {
         private String errorMessage;
 

@@ -11,31 +11,31 @@ namespace BusinessLogic.Entities
     //can't call static methods.
     class CachedHourlyResponse
     {
-        private City city;
+        private LatLong location;
         private DateTime dateAdded;
         private NWSHourlyWeatherResponse response;
 
-        private static Dictionary<City, CachedHourlyResponse> cache = new Dictionary<City, CachedHourlyResponse>();
+        private static Dictionary<LatLong, CachedHourlyResponse> cache = new Dictionary<LatLong, CachedHourlyResponse>();
         private const int CACHE_LENGTH_MINUTES = 60;
 
-        public CachedHourlyResponse(City city, NWSHourlyWeatherResponse response)
+        public CachedHourlyResponse(LatLong location, NWSHourlyWeatherResponse response)
         {
-            this.city = city;
+            this.location = location;
             this.response = response;
             this.dateAdded = DateTime.Now;
         }
 
-        public static NWSHourlyWeatherResponse getResponse(City city)
+        public static NWSHourlyWeatherResponse getResponse(LatLong location)
         {
-            if (!cache.ContainsKey(city) || cache[city].dateAdded.AddMinutes(CACHE_LENGTH_MINUTES) < DateTime.Now)
+            if (!cache.ContainsKey(location) || cache[location].dateAdded.AddMinutes(CACHE_LENGTH_MINUTES) < DateTime.Now)
             {
                 Console.WriteLine("City not in cache.  Adding.");
-                cache[city] = new CachedHourlyResponse(city, NWSHourlyWeatherResponse.fetchResponse(city));
-                return cache[city].response;
+                cache[location] = new CachedHourlyResponse(location, NWSHourlyWeatherResponse.fetchResponse(location));
+                return cache[location].response;
             }
             else
             {
-                return cache[city].response;
+                return cache[location].response;
             }
         }
     }

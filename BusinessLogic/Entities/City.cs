@@ -7,19 +7,16 @@ using System.Xml.Serialization;
 
 namespace BusinessLogic.Entities
 {
-    public class City
+    public class City : LatLong
     {
         public String name;
         public String state;
-        public decimal latitude;
-        public decimal longitude;
 
-        public City(String name, String state, decimal latitude, decimal longitude)
+        public City(String name, String state, decimal latitude, decimal longitude) 
+            : base(latitude, longitude)
         {
             this.name = name;
             this.state = state;
-            this.latitude = latitude;
-            this.longitude = longitude;
         }
     }
 
