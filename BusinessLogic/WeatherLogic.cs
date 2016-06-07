@@ -82,5 +82,18 @@ namespace BusinessLogic
                 return CachedHourlyResponse.getResponse(location);
             }
         }
+
+        public WeatherResponse GetWeatherNWSByLatLong(decimal latitude, decimal longitude, bool isDaily)
+        {
+            LatLong location = new LatLong(latitude, longitude);
+            if (isDaily)
+            {
+                return CachedDailyResponse.getResponse(location);
+            }
+            else
+            {
+                return CachedHourlyResponse.getResponse(location);
+            }
+        }
     }
 }

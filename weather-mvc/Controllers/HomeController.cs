@@ -40,5 +40,14 @@ namespace weather_mvc.Controllers
             ViewBag.responseHTML = resp.getHTML();
             return PartialView();
         }
+
+        public ActionResult WeatherAnswerPartialFromLatLong(String latitude, String longitude, String timescale = "daily")
+        {
+            WeatherLogic logic = new WeatherLogic();
+            WeatherResponse resp = logic.GetWeatherNWSByLatLong(Decimal.Parse(latitude), Decimal.Parse(longitude), timescale.Equals("daily"));
+
+            ViewBag.responseHTML = resp.getHTML();
+            return PartialView("WeatherAnswerPartial");
+        }
     }
 }

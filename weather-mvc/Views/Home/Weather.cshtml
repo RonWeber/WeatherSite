@@ -16,6 +16,7 @@
                 <span class="input-group-btn"><input type="submit" value="Get weather" class="btn btn-primary" id="submitButton"/></span>
             </div>
             </p>
+            <input type="button" value="Determine my location" class="btn btn-primary" id="locationButton" onclick="doLocationUpdate()"/>
             <br />
             <p>@Html.RadioButton("timescale", "daily", true) Daily Forecast</p>
             <p>@Html.RadioButton("timescale", "hourly", false) 3 Hour Forecast</p>
@@ -28,6 +29,18 @@
 
 
 <script type="text/javascript">
+    function doLocationUpdate() {
+        if (!navigator.geolocation) $('#responseContainer').text("Your browser does not support geolocation.");
+        navigator.geolocation.getCurrentPosition(positionReady);
+        }
+    function positionReady(position) {
+        var latitude  = position.coords.latitude;
+        var longitude = position.coords.longitude;
+        var timescale = $('input[name=timescale]:checked').val();
+        $('#responseContainer').text("Loading...");
+        $('#responseContainer').load('@Url.Action("WeatherAnswerPartialFromLatLong", "Home")?latitude=' + encodeURIComponent(latitude) 
+            + '&longitude=' + encodeURIComponent(longitude) + '&timescale=' + encodeURIComponent(timescale));
+    }
     $(document).ready(function () {
         $('#submitButton').click(function () {
             var requestedCity = document.getElementById("inputText").value;
