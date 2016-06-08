@@ -18,8 +18,8 @@
             </p>
             <input type="button" value="Determine my location" class="btn btn-primary" id="locationButton" onclick="doLocationUpdate()"/>
             <br />
-            <p>@Html.RadioButton("timescale", "daily", true) Daily Forecast</p>
-            <p>@Html.RadioButton("timescale", "hourly", false) 3 Hour Forecast</p>
+            <p>@Html.RadioButton("timescale", "daily", true) Daily Forecast
+            @Html.RadioButton("timescale", "hourly", false) 3 Hour Forecast</p>
         </div>
     </div>
     <div id="responseContainer" class="row">
