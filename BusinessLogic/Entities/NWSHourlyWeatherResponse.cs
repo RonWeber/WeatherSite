@@ -20,7 +20,7 @@ namespace BusinessLogic.Entities
             ndfdXML request = new ndfdXML();
             weatherParametersType parameters = new weatherParametersType();
             parameters.temp = true; parameters.pop12 = true; parameters.wx = true; parameters.icons = true;
-            parameters.wwa = true;  parameters.rh = true;
+            parameters.wwa = true;  parameters.rh = true; parameters.waveh = true;
             string response = request.NDFDgen(location.getLatitude(), location.getLongitude(), productType.timeseries, DateTime.Now, 
                 DateTime.Now.AddDays(8), unitType.e, parameters);
 
@@ -44,6 +44,7 @@ namespace BusinessLogic.Entities
             }
             string table = "<table class=\"table table-striped table-bordered\" id=\"weatherTable\">";
             table += "<tr><th>Time</th><th>Weather Type</th><th>Temperature</th><th>Relative Humidity</th><th>12h Precipitation Chance</th>";
+            if (weHaveWaves(information)) table += "<th>Wave Height</th>";
             table += "</tr>";
             List<DateTime> threeHourInterval = getStartTimes(information.data.timelayout[1]);
             for (int i = 0; i < threeHourInterval.Count; i++)
@@ -60,11 +61,21 @@ namespace BusinessLogic.Entities
                 table += "<td>" + information.data.parameters.temperature.value[i] + "</td>";
                 table += "<td>" + information.data.parameters.humidity.value[i] + "%</td>";
                 table += "<td>" + information.data.parameters.probabilityofprecipitation.value[whereWeAreIn12h] + "%</td>";
+                if (weHaveWaves(information))
+                {
+                    int whereWeAreInWaves = getTimeLayoutIndex(threeHourInterval[i], getStartTimes(information.data.timelayout[2]));
+                    table += "<td>" + information.data.parameters.waterstate.waves.value[whereWeAreInWaves] + " Feet</td>";
+                }
                 table += "</tr>";
             }
 
             table += "</table>";
             return table;
+        }
+
+        private bool weHaveWaves(NDFDgenHourly.dwml information)
+        {
+            return information.data.parameters.waterstate.waves.value[0] != null;
         }
 
         //Gets the index of the nearest time >= currentTime in the time layout specified by layout.

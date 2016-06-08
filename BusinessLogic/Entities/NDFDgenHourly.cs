@@ -703,6 +703,8 @@ namespace BusinessLogic.Entities
 
             private dwmlDataParametersHazards hazardsField;
 
+            private dwmlDataParametersWaterstate waterstateField;
+
             private string applicablelocationField;
 
             /// <remarks/>
@@ -782,6 +784,20 @@ namespace BusinessLogic.Entities
                 set
                 {
                     this.hazardsField = value;
+                }
+            }
+
+            /// <remarks/>
+            [System.Xml.Serialization.XmlElementAttribute("water-state")]
+            public dwmlDataParametersWaterstate waterstate
+            {
+                get
+                {
+                    return this.waterstateField;
+                }
+                set
+                {
+                    this.waterstateField = value;
                 }
             }
 
@@ -1138,7 +1154,6 @@ namespace BusinessLogic.Entities
                     this.valueField = value;
                 }
             }
-            
         }
 
         /// <remarks/>
@@ -1370,6 +1385,117 @@ namespace BusinessLogic.Entities
                 }
             }
         }
+
+        /// <remarks/>
+        [System.SerializableAttribute()]
+        [System.ComponentModel.DesignerCategoryAttribute("code")]
+        [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
+        public partial class dwmlDataParametersWaterstate
+        {
+
+            private dwmlDataParametersWaterstateWaves wavesField;
+
+            private string timelayoutField;
+
+            /// <remarks/>
+            public dwmlDataParametersWaterstateWaves waves
+            {
+                get
+                {
+                    return this.wavesField;
+                }
+                set
+                {
+                    this.wavesField = value;
+                }
+            }
+
+            /// <remarks/>
+            [System.Xml.Serialization.XmlAttributeAttribute("time-layout")]
+            public string timelayout
+            {
+                get
+                {
+                    return this.timelayoutField;
+                }
+                set
+                {
+                    this.timelayoutField = value;
+                }
+            }
+        }
+
+        /// <remarks/>
+        [System.SerializableAttribute()]
+        [System.ComponentModel.DesignerCategoryAttribute("code")]
+        [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
+        public partial class dwmlDataParametersWaterstateWaves
+        {
+
+            private string nameField;
+
+            private string[] valueField;
+
+            private string typeField;
+
+            private string unitsField;
+
+            /// <remarks/>
+            public string name
+            {
+                get
+                {
+                    return this.nameField;
+                }
+                set
+                {
+                    this.nameField = value;
+                }
+            }
+
+            /// <remarks/>
+            [System.Xml.Serialization.XmlElementAttribute("value", IsNullable = true)]
+            public string[] value
+            {
+                get
+                {
+                    return this.valueField;
+                }
+                set
+                {
+                    this.valueField = value;
+                }
+            }
+
+            /// <remarks/>
+            [System.Xml.Serialization.XmlAttributeAttribute()]
+            public string type
+            {
+                get
+                {
+                    return this.typeField;
+                }
+                set
+                {
+                    this.typeField = value;
+                }
+            }
+
+            /// <remarks/>
+            [System.Xml.Serialization.XmlAttributeAttribute()]
+            public string units
+            {
+                get
+                {
+                    return this.unitsField;
+                }
+                set
+                {
+                    this.unitsField = value;
+                }
+            }
+        }
+
 
 
     }
