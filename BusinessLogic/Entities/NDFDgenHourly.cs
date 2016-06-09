@@ -1154,6 +1154,7 @@ namespace BusinessLogic.Entities
                     this.valueField = value;
                 }
             }
+            
         }
 
         /// <remarks/>
@@ -1340,7 +1341,7 @@ namespace BusinessLogic.Entities
 
             private string nameField;
 
-            private object[] hazardconditionsField;
+            private dwmlDataParametersHazardsHazardconditions[] hazardconditionsField;
 
             private string timelayoutField;
 
@@ -1359,7 +1360,7 @@ namespace BusinessLogic.Entities
 
             /// <remarks/>
             [System.Xml.Serialization.XmlElementAttribute("hazard-conditions")]
-            public object[] hazardconditions
+            public dwmlDataParametersHazardsHazardconditions[] hazardconditions
             {
                 get
                 {
@@ -1382,6 +1383,116 @@ namespace BusinessLogic.Entities
                 set
                 {
                     this.timelayoutField = value;
+                }
+            }
+        }
+
+        /// <remarks/>
+        [System.SerializableAttribute()]
+        [System.ComponentModel.DesignerCategoryAttribute("code")]
+        [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
+        public partial class dwmlDataParametersHazardsHazardconditions
+        {
+
+            private dwmlDataParametersHazardsHazardconditionsHazard hazardField;
+
+            /// <remarks/>
+            public dwmlDataParametersHazardsHazardconditionsHazard hazard
+            {
+                get
+                {
+                    return this.hazardField;
+                }
+                set
+                {
+                    this.hazardField = value;
+                }
+            }
+        }
+
+        /// <remarks/>
+        [System.SerializableAttribute()]
+        [System.ComponentModel.DesignerCategoryAttribute("code")]
+        [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
+        public partial class dwmlDataParametersHazardsHazardconditionsHazard
+        {
+
+            private string hazardTextURLField;
+
+            private string hazardCodeField;
+
+            private string phenomenaField;
+
+            private string significanceField;
+
+            private string hazardTypeField;
+
+            /// <remarks/>
+            public string hazardTextURL
+            {
+                get
+                {
+                    return this.hazardTextURLField;
+                }
+                set
+                {
+                    this.hazardTextURLField = value;
+                }
+            }
+
+            /// <remarks/>
+            [System.Xml.Serialization.XmlAttributeAttribute()]
+            public string hazardCode
+            {
+                get
+                {
+                    return this.hazardCodeField;
+                }
+                set
+                {
+                    this.hazardCodeField = value;
+                }
+            }
+
+            /// <remarks/>
+            [System.Xml.Serialization.XmlAttributeAttribute()]
+            public string phenomena
+            {
+                get
+                {
+                    return this.phenomenaField;
+                }
+                set
+                {
+                    this.phenomenaField = value;
+                }
+            }
+
+            /// <remarks/>
+            [System.Xml.Serialization.XmlAttributeAttribute()]
+            public string significance
+            {
+                get
+                {
+                    return this.significanceField;
+                }
+                set
+                {
+                    this.significanceField = value;
+                }
+            }
+
+            /// <remarks/>
+            [System.Xml.Serialization.XmlAttributeAttribute()]
+            public string hazardType
+            {
+                get
+                {
+                    return this.hazardTypeField;
+                }
+                set
+                {
+                    this.hazardTypeField = value;
                 }
             }
         }
@@ -1454,7 +1565,7 @@ namespace BusinessLogic.Entities
             }
 
             /// <remarks/>
-            [System.Xml.Serialization.XmlElementAttribute("value", IsNullable = true)]
+            [System.Xml.Serialization.XmlElementAttribute("value")]
             public string[] value
             {
                 get

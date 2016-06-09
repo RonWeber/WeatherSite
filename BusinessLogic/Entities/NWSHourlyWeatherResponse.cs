@@ -43,7 +43,14 @@ namespace BusinessLogic.Entities
                 return "<p>Error.</p>";
             }
 
-            string table = "<div class='container'>";
+            string table = "";
+            if (getWarningOrWatch(information) != null)
+            {
+                table += "<div class='warningWatch'>";
+                table += "There is a " + getWarningOrWatch(information) + " in this area.";
+                table += "</div>";
+            }
+            table += "<div class='container'>";
             List<DateTime> threeHourInterval = getStartTimes(information.data.timelayout[1]);
             for (int i = 0; i < threeHourInterval.Count; i++)
             {
@@ -108,7 +115,19 @@ namespace BusinessLogic.Entities
 
         private bool weHaveWaves(NDFDgenHourly.dwml information)
         {
-            return information.data.parameters.waterstate.waves.value[0] != null;
+            return !String.IsNullOrEmpty(information.data.parameters.waterstate.waves.value[0]);
+        }
+
+        private string getWarningOrWatch(NDFDgenHourly.dwml information)
+        {
+            foreach (var w in information.data.parameters.hazards.hazardconditions)
+            {
+                if (w.hazard != null) //There's a warning/watch
+                {
+                    return w.hazard.phenomena + " " + w.hazard.significance;
+                }
+            }
+            return null;
         }
 
         //Gets the index of the nearest time >= currentTime in the time layout specified by layout.
