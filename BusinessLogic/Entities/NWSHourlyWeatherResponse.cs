@@ -44,11 +44,12 @@ namespace BusinessLogic.Entities
             }
 
             string table = "";
+            //Warning/watch
             if (getWarningOrWatch(information) != null)
             {
-                table += "<div class='warningWatch'>";
+                table += "<div><p class='warning_watch text-center'><strong>";
                 table += "There is a " + getWarningOrWatch(information) + " in this area.";
-                table += "</div>";
+                table += "</strong></p></div>";
             }
             table += "<div class='container'>";
             List<DateTime> threeHourInterval = getStartTimes(information.data.timelayout[1]);
