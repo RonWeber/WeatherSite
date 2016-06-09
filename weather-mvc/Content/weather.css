@@ -1,13 +1,46 @@
-/*/table {
-    border-collapse: collapse;
+.row {
+    border: 1px solid #bbbbbb;
 }
 
-table, th, td {
-    border: 1px solid black;
-}*/
+.words_big{
+    font-size: 2em;
+    font-weight:bold;
+}
+
+.words_med {
+    font-size:1.5em;
+}
+
+.words_small {
+    font-size:1em;
+}
+
+.inline{
+    display:inline-block;
+    padding:20px;
+}
 
 .weather_icon {
     max-width:100%;
     width:auto;
-    height:1.5em;
+    height:7em;
+    padding:3px;
+}
+
+@media (max-width: 600px) {
+.weather_icon {
+    height:3.5em;
+  }
+
+.words_big {
+    font-size:1.5em;
+}
+
+.words_med{
+    font-size:1em;
+}
+
+.words_small {
+    font-size:0.7em;
+}
 }

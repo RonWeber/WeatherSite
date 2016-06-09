@@ -8,21 +8,26 @@
 @Styles.Render("~/Content/weather.css")
         
 <div class="grid">
-    <div class="row">
-        <div class="col-md-4 col-md-offset-4">
-            <p>Enter city or ZIP code:
-            <div class="input-group ">
-                @Html.TextBox("location", "", new { @class = "form-control", @id = "inputText"})
-                <span class="input-group-btn"><input type="submit" value="Get weather" class="btn btn-primary" id="submitButton"/></span>
-            </div>
+    <div class='container'>        
+        <div class="row">
+            <div class="col-md-4 col-md-offset-4">
+                <p>
+                    Enter city or ZIP code:
+                    <div class="input-group ">
+                        @Html.TextBox("location", "", new { @class = "form-control", @id = "inputText" })
+                        <span class="input-group-btn"><input type="submit" value="Get weather" class="btn btn-primary" id="submitButton" /></span>
+                    </div>
+                </p>
+                <input type="button" value="Determine my location" class="btn btn-primary" id="locationButton" onclick="doLocationUpdate()" />
+                <br />
+                <p>
+                    @Html.RadioButton("timescale", "daily", true) Daily Forecast
+                @Html.RadioButton("timescale", "hourly", false) 3 Hour Forecast
             </p>
-            <input type="button" value="Determine my location" class="btn btn-primary" id="locationButton" onclick="doLocationUpdate()"/>
-            <br />
-            <p>@Html.RadioButton("timescale", "daily", true) Daily Forecast
-            @Html.RadioButton("timescale", "hourly", false) 3 Hour Forecast</p>
+        </div>
         </div>
     </div>
-    <div id="responseContainer" class="row">
+    <div id="responseContainer" >
 
     </div>
 </div>
