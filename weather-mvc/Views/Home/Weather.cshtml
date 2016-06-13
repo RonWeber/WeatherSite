@@ -14,7 +14,7 @@
                 <p>
                     Enter city or ZIP code:
                     <div class="input-group ">
-                        @Html.TextBox("location", "", new { @class = "form-control", @id = "inputText" })
+                        @Html.TextBox("location", "", new { @class = "form-control", @id = "inputText", @autocomplete="on"})
                         <span class="input-group-btn"><input type="submit" value="Get weather" class="btn btn-primary" id="submitButton" /></span>
                     </div>
                 </p>
@@ -22,13 +22,12 @@
                 <br />
                 <p>
                     @Html.RadioButton("timescale", "daily", true) Daily Forecast
-                @Html.RadioButton("timescale", "hourly", false) 3 Hour Forecast
-            </p>
-        </div>
+                    @Html.RadioButton("timescale", "hourly", false) 3 Hour Forecast
+                </p>
+            </div>
         </div>
     </div>
     <div id="responseContainer" >
-
     </div>
 </div>
 
