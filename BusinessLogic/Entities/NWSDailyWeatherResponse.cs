@@ -37,33 +37,35 @@ namespace BusinessLogic.Entities
             {
                 return "<p>Error.</p>";
             }
-            string table = "<table class=\"table table-striped table-bordered\" id=\"weatherTable\">";
-            table += "<tr><th>Time</th><th>Weather Type</th><th>" + information.data.parameters.temperature[1].name + "</th><th>" + information.data.parameters.temperature[0].name + "</th><th>Precipitation Chance</th>";
-            table += "</tr>";
+            string table = "<div class='container'>";
             for (int i = 1; i < information.data.timelayout[0].Items.Length; i += 2)
             {
-                table += "<tr>";               
+                table += "<div class='row'>";               
                 DateTime dt = (DateTime)information.data.timelayout[0].Items[i];
 
-                table += "<td><b>" + dt.DayOfWeek + "</b>&nbsp" +  dt.ToShortDateString() + "</td>";
+                //Date
+                table += "<div class='col-sm-2'><span class='words_big'>" + dt.DayOfWeek + "</span><br/>" +  dt.ToShortDateString() + "</div>";
+
+                table += "<div class='col-sm-4'>";
+                //Image
                 if (information?.data?.parameters?.conditionsicon?.iconlink[i / 2] != null)
-                    table += "<td>" + "<img class=\"weather_icon\" src=\"" + information.data.parameters.conditionsicon.iconlink[i / 2] + "\" />";
-                else
-                    table += "<td />";
+                    table += "<img class=\"weather_icon\" src=\"" + information.data.parameters.conditionsicon.iconlink[i / 2] + "\" />";
+                //Weather
                 if (information?.data?.parameters?.weather?.weatherconditions[i / 2]?.weathersummary != null)
-                    table += information.data.parameters.weather.weatherconditions[i / 2].weathersummary + "</td>";
-                else
-                    table += "<td />";
-                table += "<td>" + information.data.parameters.temperature[1].value[i / 2] + "</td>";
-                table += "<td>" + information.data.parameters.temperature[0].value[i / 2] + "</td>";
+                    table += information.data.parameters.weather.weatherconditions[i / 2].weathersummary;
+                
+                table += "</div>";
+                table += "<div class='col-sm-6'>";
+                table += "<div class='inline'><span class='words_small'>Low</span><br/><span class='words_med' >" + information.data.parameters.temperature[1].value[i / 2] + "&deg</span></div>";
+                table += "<div class='inline'><span class='words_small'>High</span><br/><span class='words_med' >" + information.data.parameters.temperature[0].value[i / 2] + "&deg</span></div>";
                 if (!string.IsNullOrEmpty(information.data.parameters.probabilityofprecipitation.value[i]))
-                    table += "<td>" + information.data.parameters.probabilityofprecipitation.value[i] + "%</td>";
-                else
-                    table += "<td />";
-                table += "</tr>";
+                    table += "<div class='inline'><span class='words_small'>Precip</span><br/><span class='words_med' >" + information.data.parameters.probabilityofprecipitation.value[i] + "%</span></div>";
+
+                //End temperature and row.
+                table += "</div></div>";
             }
 
-            table += "</table>";
+            table += "</div>";
             return table;
         }
     }
