@@ -21,7 +21,7 @@ namespace BusinessLogic.Entities
             weatherParametersType parameters = new weatherParametersType();
             parameters.temp = true; parameters.pop12 = true; parameters.wx = true; parameters.icons = true;
             parameters.wwa = true;  parameters.rh = true; parameters.waveh = true;
-            string response = request.NDFDgen(location.getLatitude(), location.getLongitude(), productType.timeseries, DateTime.Now.AddDays(-1), 
+            string response = request.NDFDgen(location.getLatitude(), location.getLongitude(), productType.timeseries, DateTime.UtcNow.AddHours(-7), 
                 DateTime.Now.AddDays(8), unitType.e, parameters);
 
             XmlSerializer serializer = new XmlSerializer(typeof(Entities.NDFDgenHourly.dwml));
