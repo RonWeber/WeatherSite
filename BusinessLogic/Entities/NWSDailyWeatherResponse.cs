@@ -17,7 +17,7 @@ namespace BusinessLogic.Entities
         public static NWSDailyWeatherResponse fetchResponse(LatLong location)
         {
             ndfdXML request = new ndfdXML();
-            string response = request.NDFDgenByDay(location.getLatitude(), location.getLongitude(), DateTime.Now, "10", unitType.e, formatType.Item24hourly);
+            string response = request.NDFDgenByDay(location.getLatitude(), location.getLongitude(), DateTime.UtcNow.AddHours(-7), "10", unitType.e, formatType.Item24hourly);
 
             XmlSerializer serializer = new XmlSerializer(typeof(Entities.NDFDgenByDay.dwml));
 

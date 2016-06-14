@@ -150,7 +150,9 @@ namespace BusinessLogic.Entities
             {
                 if (layout.ItemsElementName[i] == NDFDgenHourly.ItemsChoiceType.startvalidtime)
                 {
-                    result.Add((DateTime)layout.Items[i]);
+                    DateTime dateTimeAsListed = (DateTime)layout.Items[i];
+                    DateTime dateTimeEastern = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(dateTimeAsListed, "Eastern Standard Time");
+                    result.Add(dateTimeEastern);
                 }
             }
             return result;
