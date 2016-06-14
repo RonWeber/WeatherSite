@@ -22,6 +22,7 @@ namespace weather_mvc.Controllers
 
         public ActionResult WeatherAnswerPartial(String location, String timescale = "daily")
         {
+            ViewBag.inputTitle = location;
             WeatherResponse resp;
             if (String.IsNullOrEmpty(location))
             {
@@ -44,6 +45,7 @@ namespace weather_mvc.Controllers
 
         public ActionResult WeatherAnswerPartialFromLatLong(String latitude, String longitude, String timescale = "daily")
         {
+            ViewBag.inputTitle = latitude.Substring(0, 5) + ", " + longitude.Substring(0, 6); //Longitude has an extra character for the - sign.
             WeatherLogic logic = new WeatherLogic();
             WeatherResponse resp = logic.GetWeatherNWSByLatLong(Decimal.Parse(latitude), Decimal.Parse(longitude), timescale.Equals("daily"));
 
