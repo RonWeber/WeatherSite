@@ -17,10 +17,8 @@ namespace BusinessLogic.Entities
         public static NWSDailyWeatherResponse fetchResponse(LatLong location)
         {
             ndfdXML request = new ndfdXML();
-            //string response = request.NDFDgenByDay(location.getLatitude(), location.getLongitude(), DateTime.UtcNow.AddHours(-7), "10", unitType.e, formatType.Item24hourly);
-            //What about subtracting 3 extra hours so we get the previous predicition as well?
-            string response = request.NDFDgenByDay(location.getLatitude(), location.getLongitude(), DateTime.UtcNow.AddHours(-10), "10", unitType.e, formatType.Item24hourly);
-
+            string response = request.NDFDgenByDay(location.getLatitude(), location.getLongitude(), DateTime.UtcNow.AddHours(-7), "10", unitType.e, formatType.Item24hourly);
+            
             XmlSerializer serializer = new XmlSerializer(typeof(Entities.NDFDgenByDay.dwml));
 
             Entities.NDFDgenByDay.dwml weather = (Entities.NDFDgenByDay.dwml)serializer.Deserialize(new MemoryStream(Encoding.UTF8.GetBytes(response)));
