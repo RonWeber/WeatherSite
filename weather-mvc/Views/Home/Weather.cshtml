@@ -19,12 +19,15 @@
                     </div>
                 </p>
                 <input type="button" value="Determine my location" class="btn btn-primary" id="locationButton" onclick="doLocationUpdate()" />
-                <br />
-                <p>
-                    @Html.RadioButton("timescale", "daily", true) Daily Forecast
-                    @Html.RadioButton("timescale", "hourly", false) 3 Hour Forecast
-                </p>
             </div>
+        </div>
+            <div class="row">
+                <div class="col-md-3 col-md-offset-3 col-sm-6">
+                        @Html.RadioButton("timescale", "daily", true) <span class="words_weather_type">Daily Forecast</span>
+                    </div>
+                <div class="col-md-3 col-sm-6">
+                        @Html.RadioButton("timescale", "hourly", false) <span class="words_weather_type">3 Hour Forecast</span>                    
+                </div>
         </div>
     </div>
     <div id="responseContainer" >
@@ -36,6 +39,7 @@
 <script type="text/javascript">
     var placeFromGoogle;
     function doLocationUpdate() {
+        $('#responseContainer').text("Waiting on your browser's location...");
         if (!navigator.geolocation) $('#responseContainer').text("Your browser does not support geolocation.");
         navigator.geolocation.getCurrentPosition(positionReady);
         }
