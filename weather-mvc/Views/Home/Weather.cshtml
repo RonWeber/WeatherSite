@@ -31,8 +31,10 @@
     </div>
 </div>
 
+<script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places" type="text/javascript"></script>
 
 <script type="text/javascript">
+    var placeFromGoogle;
     function doLocationUpdate() {
         if (!navigator.geolocation) $('#responseContainer').text("Your browser does not support geolocation.");
         navigator.geolocation.getCurrentPosition(positionReady);
@@ -46,12 +48,26 @@
             + '&longitude=' + encodeURIComponent(longitude) + '&timescale=' + encodeURIComponent(timescale));
     }
     $(document).ready(function () {
+        var autocomplete = new google.maps.places.Autocomplete(document.getElementById('inputText'));
+        google.maps.event.addListener(autocomplete, 'place_changed', function () {
+            placeFromGoogle = autocomplete.getPlace();
+        });
         $('#submitButton').click(function () {
-            var requestedCity = document.getElementById("inputText").value;
             var timescale = $('input[name=timescale]:checked').val();
-            $('#responseContainer').text("Loading...");
-            $('#responseContainer').load('@Url.Action("WeatherAnswerPartial", "Home")?location=' + encodeURIComponent(requestedCity)
-                + '&timescale=' + encodeURIComponent(timescale));
+            if (placeFromGoogle && placeFromGoogle.geometry) //Get by Lat/Long, thanks to Google.
+            {
+                $('#responseContainer').text("Loading...");
+                $('#responseContainer').load('@Url.Action("WeatherAnswerPartialFromLatLong", "Home")?latitude=' + encodeURIComponent(placeFromGoogle.geometry.location.lat())
+                    + '&longitude=' + encodeURIComponent(placeFromGoogle.geometry.location.lng()) + '&timescale=' + encodeURIComponent(timescale));
+            }
+            else //Get by NWS name or ZIP code.
+            {
+                var requestedCity = document.getElementById("inputText").value;
+
+                $('#responseContainer').text("Loading...");
+                $('#responseContainer').load('@Url.Action("WeatherAnswerPartial", "Home")?location=' + encodeURIComponent(requestedCity)
+                    + '&timescale=' + encodeURIComponent(timescale));
+            }
         });
         $('#inputText').keyup(function (e) {
             if (e.keyCode == 13) $('#submitButton').click();
