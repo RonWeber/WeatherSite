@@ -21,16 +21,24 @@
                 <input type="button" value="Determine my location" class="btn btn-primary" id="locationButton" onclick="doLocationUpdate()" />
             </div>
         </div>
-            <div class="row">
-                <div class="col-md-3 col-md-offset-3 col-sm-6">
-                        @Html.RadioButton("timescale", "daily", true) <span class="words_weather_type">Daily Forecast</span>
-                    </div>
-                <div class="col-md-3 col-sm-6">
-                        @Html.RadioButton("timescale", "hourly", false) <span class="words_weather_type">3 Hour Forecast</span>                    
+        @*<div class="row">
+            <div class="col-md-3 col-md-offset-3 col-sm-6">
+                    @Html.RadioButton("timescale", "daily", true) <span class="words_weather_type">Daily Forecast</span>
                 </div>
+            <div class="col-md-3 col-sm-6">
+                    @Html.RadioButton("timescale", "hourly", false) <span class="words_weather_type">3 Hour Forecast</span>                    
+            </div>
+       </div>*@
+        <div class="row">
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs" id="weatherType" role="tablist">
+                <li class="active"><a onclick="tabTime_click('daily')" value="daily" href="" role="tab" data-toggle="tab">Daily Forecast</a></li>
+                <li><a href="" onclick="tabTime_click('hourly')" role="tab" value="hourly" data-toggle="tab">3 Hour Forecast</a></li>
+            </ul>
         </div>
     </div>
-    <div id="responseContainer" >
+    <div id="responseContainer">
+
     </div>
 </div>
 
@@ -38,43 +46,85 @@
 
 <script type="text/javascript">
     var placeFromGoogle;
+    var placeFromPosition;
+    var requestedCity;
+    var timescale;
+
     function doLocationUpdate() {
         $('#responseContainer').text("Waiting on your browser's location...");
-        if (!navigator.geolocation) $('#responseContainer').text("Your browser does not support geolocation.");
-        navigator.geolocation.getCurrentPosition(positionReady);
+        if (!navigator.geolocation) {
+            $('#responseContainer').text("Your browser does not support geolocation.");
+            return;
         }
-    function positionReady(position) {
-        var latitude  = position.coords.latitude;
-        var longitude = position.coords.longitude;
-        var timescale = $('input[name=timescale]:checked').val();
-        $('#responseContainer').text("Loading...");
-        $('#responseContainer').load('@Url.Action("WeatherAnswerPartialFromLatLong", "Home")?latitude=' + encodeURIComponent(latitude) 
-            + '&longitude=' + encodeURIComponent(longitude) + '&timescale=' + encodeURIComponent(timescale));
+        navigator.geolocation.getCurrentPosition(positionReady);
     }
+    function positionReady(position) {
+        placeFromPosition = position;
+        getWeatherByPosition();
+    }
+
     $(document).ready(function () {
+        timescale = $('#weatherType li.active a').attr('value');
         var autocomplete = new google.maps.places.Autocomplete(document.getElementById('inputText'));
         google.maps.event.addListener(autocomplete, 'place_changed', function () {
             placeFromGoogle = autocomplete.getPlace();
         });
         $('#submitButton').click(function () {
-            var timescale = $('input[name=timescale]:checked').val();
+            //var timescale = $('input[name=timescale]:checked').val();
             if (placeFromGoogle && placeFromGoogle.geometry) //Get by Lat/Long, thanks to Google.
             {
-                $('#responseContainer').text("Loading...");
-                $('#responseContainer').load('@Url.Action("WeatherAnswerPartialFromLatLong", "Home")?latitude=' + encodeURIComponent(placeFromGoogle.geometry.location.lat())
-                    + '&longitude=' + encodeURIComponent(placeFromGoogle.geometry.location.lng()) + '&timescale=' + encodeURIComponent(timescale));
+                getWeatherByGooglePlace();
             }
             else //Get by NWS name or ZIP code.
             {
-                var requestedCity = document.getElementById("inputText").value;
-
-                $('#responseContainer').text("Loading...");
-                $('#responseContainer').load('@Url.Action("WeatherAnswerPartial", "Home")?location=' + encodeURIComponent(requestedCity)
-                    + '&timescale=' + encodeURIComponent(timescale));
+                requestedCity = document.getElementById("inputText").value;
+                getWeatherByName();
             }
         });
         $('#inputText').keyup(function (e) {
             if (e.keyCode == 13) $('#submitButton').click();
         });
     });
+
+    function getWeatherByPosition() {
+        var latitude = placeFromPosition.coords.latitude;
+        var longitude = placeFromPosition.coords.longitude;
+        //var timescale = $('input[name=timescale]:checked').val();
+        $('#responseContainer').text("Loading...");
+        $('#responseContainer').load('@Url.Action("WeatherAnswerPartialFromLatLong", "Home")?latitude=' + encodeURIComponent(latitude)
+            + '&longitude=' + encodeURIComponent(longitude) + '&timescale=' + encodeURIComponent(timescale));
+    }
+
+    function getWeatherByGooglePlace() {
+        $('#responseContainer').text("Loading...");
+        //var timescale = $('#weatherType li.active a').attr('value');
+        $('#responseContainer').load('@Url.Action("WeatherAnswerPartialFromLatLong", "Home")?latitude=' + encodeURIComponent(placeFromGoogle.geometry.location.lat())
+            + '&longitude=' + encodeURIComponent(placeFromGoogle.geometry.location.lng()) + '&timescale=' + encodeURIComponent(timescale));
+    }
+
+    function getWeatherByName() {
+        $('#responseContainer').text("Loading...");
+        //var timescale = $('#weatherType li.active a').attr('value');
+        $('#responseContainer').load('@Url.Action("WeatherAnswerPartial", "Home")?location=' + encodeURIComponent(requestedCity)
+            + '&timescale=' + encodeURIComponent(timescale));
+    }
+
+    function tabTime_click(_timescale) {
+        if (timescale != _timescale)
+        {
+            timescale = _timescale;
+            if (placeFromPosition) {
+                getWeatherByPosition();
+                return;
+            }
+            if (placeFromGoogle) {
+                getWeatherByGooglePlace();
+                return;
+            }
+            if (requestedCity) {
+                getWeatherByName();
+                return;
+            }
+        }
+    }
 </script>
