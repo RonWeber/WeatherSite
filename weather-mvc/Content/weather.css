@@ -48,6 +48,8 @@ html, body {
     padding:20px
 }
 
+
+
 @media (max-width: 600px) {
     .weather_icon {
         height:3.5em;
