@@ -15,14 +15,12 @@ Weather.Marine = (function () {
         currentZone = {};
         currentSubZone = {};
 
+        var _belowMainContainer = $("#belowMainContainer");
+        _belowMainContainer.empty();
         //locations is passed in the locations.js file (which needs to be loaded before we get here)
         var _mainContainer = $("#mainContainer");
         _mainContainer.empty();
         _mainContainer.append("<label class='words_big' >Please Select an Area</label><hr/>");
-        var bootstrapContainer = $("<div class='container-fluid'/>");
-        var row = $("<div class='row'/>");
-        _mainContainer.append(bootstrapContainer);
-        bootstrapContainer.append(row);
         for (var i = 0; i < locations.length; i++) {
             //var loc = locations[i];
             var loc = jQuery.extend(true, {}, locations[i]);
@@ -39,7 +37,7 @@ Weather.Marine = (function () {
                     }
                 }
             });
-            row.append($("<div class='col-md-2 text-center'/>").append(_locationButton));
+            _mainContainer.append(_locationButton);
         };
     };
 
@@ -48,10 +46,6 @@ Weather.Marine = (function () {
         _mainContainer.empty();
         _mainContainer.append(makeBackButton());
         _mainContainer.append("<label class='words_med' >" + location.title + "</label><hr/>");
-        var bootstrapContainer = $("<div class='container-fluid'/>");
-        var row = $("<div class='row'/>");
-        _mainContainer.append(bootstrapContainer);
-        bootstrapContainer.append(row);
         for (var i = 0; i < location.zones.length; i++) {
             var zone = location.zones[i];
             var _zoneButton = $('<button/>', {
@@ -66,7 +60,7 @@ Weather.Marine = (function () {
                     }
                 }
             });
-            row.append($("<div class='col-md-2 text-center'/>").append(_zoneButton));
+            _mainContainer.append(_zoneButton);
         }
     }
 
@@ -75,10 +69,6 @@ Weather.Marine = (function () {
         _mainContainer.empty();
         _mainContainer.append(makeBackButton());
         _mainContainer.append("<label class='words_med' >" + currentLocation.title + "->" + zone.title + "</label><hr/>");
-        var bootstrapContainer = $("<div class='container-fluid'/>");
-        var row = $("<div class='row'/>");
-        _mainContainer.append(bootstrapContainer);
-        bootstrapContainer.append(row);
         for (var i = 0; i < zone.subZones.length; i++) {
             var subZone = zone.subZones[i];
             var _subZoneButton = $('<button/>', {
@@ -93,7 +83,7 @@ Weather.Marine = (function () {
                     }
                 }
             });
-            row.append($("<div class='col-md-2 text-center'/>").append(_subZoneButton));
+            _mainContainer.append(_subZoneButton);
         }
     }
 
@@ -102,10 +92,6 @@ Weather.Marine = (function () {
         _mainContainer.empty();
         _mainContainer.append(makeBackButton());
         _mainContainer.append("<label class='words_med' >" + currentLocation.title + "->" + currentZone.title + "->" + subZone.title + "</label><hr/>");
-        var bootstrapContainer = $("<div class='container-fluid'/>");
-        var row = $("<div class='row'/>");
-        _mainContainer.append(bootstrapContainer);
-        bootstrapContainer.append(row);
         for (var i = 0; i < subZone.forecasts.length; i++) {
             var forecast = subZone.forecasts[i];
             var _forecastButton = $('<button/>', {
@@ -120,7 +106,7 @@ Weather.Marine = (function () {
                     }
                 }
             });
-            row.append($("<div class='col-md-2 text-center'/>").append(_forecastButton));
+            _mainContainer.append(_forecastButton);
         }
     }
 
@@ -134,7 +120,9 @@ Weather.Marine = (function () {
         _mainContainer.append(forecast.url);
 
         var words = getForecast(forecast.url);
-        _mainContainer.append(words);
+
+        var _belowMainContainer = $("#belowMainContainer");
+        _belowMainContainer.append(words);
     }
 
     function makeBackButton() {

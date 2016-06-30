@@ -7,39 +7,37 @@
 @Styles.Render("~/Content/bootstrap.css")
 @Styles.Render("~/Content/weather.css")
         
-<div class="grid">
-    <div class='container'>        
-        <div class="row">
-            <div class="col-md-4 col-md-offset-4">
-                <p>
-                    Enter city or ZIP code:
-                    <div class="input-group ">
-                        @Html.TextBox("location", "", new { @class = "form-control", @id = "inputText", @autocomplete="on"})
-                        <span class="input-group-btn"><input type="submit" value="Get weather" class="btn btn-primary" id="submitButton" /></span>
-                    </div>
-                </p>
-                <input type="button" value="Determine my location" class="btn btn-primary" id="locationButton" onclick="doLocationUpdate()" />
-            </div>
-        </div>
-        @*<div class="row">
-            <div class="col-md-3 col-md-offset-3 col-sm-6">
-                    @Html.RadioButton("timescale", "daily", true) <span class="words_weather_type">Daily Forecast</span>
+<div class='container'>        
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4">
+            <p>
+                Enter city or ZIP code:
+                <div class="input-group ">
+                    @Html.TextBox("location", "", new { @class = "form-control", @id = "inputText", @autocomplete="on"})
+                    <span class="input-group-btn"><input type="submit" value="Get weather" class="btn btn-primary" id="submitButton" /></span>
                 </div>
-            <div class="col-md-3 col-sm-6">
-                    @Html.RadioButton("timescale", "hourly", false) <span class="words_weather_type">3 Hour Forecast</span>                    
-            </div>
-       </div>*@
-        <div class="row">
-            <!-- Nav tabs -->
-            <ul class="nav nav-tabs" id="weatherType" role="tablist">
-                <li class="active"><a onclick="tabTime_click('daily')" value="daily" href="" role="tab" data-toggle="tab">Daily Forecast</a></li>
-                <li><a href="" onclick="tabTime_click('hourly')" role="tab" value="hourly" data-toggle="tab">3 Hour Forecast</a></li>
-            </ul>
+            </p>
+            <input type="button" value="Determine my location" class="btn btn-primary" id="locationButton" onclick="doLocationUpdate()" />
         </div>
     </div>
-    <div id="responseContainer">
-
+    @*<div class="row">
+        <div class="col-md-3 col-md-offset-3 col-sm-6">
+                @Html.RadioButton("timescale", "daily", true) <span class="words_weather_type">Daily Forecast</span>
+            </div>
+        <div class="col-md-3 col-sm-6">
+                @Html.RadioButton("timescale", "hourly", false) <span class="words_weather_type">3 Hour Forecast</span>                    
+        </div>
+    </div>*@
+    <div class="row">
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" id="weatherType" role="tablist">
+            <li class="active"><a onclick="tabTime_click('daily')" value="daily" href="" role="tab" data-toggle="tab">Daily Forecast</a></li>
+            <li><a href="" onclick="tabTime_click('hourly')" role="tab" value="hourly" data-toggle="tab">3 Hour Forecast</a></li>
+        </ul>
     </div>
+</div>
+<div id="responseContainer">
+
 </div>
 
 <script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places" type="text/javascript"></script>
