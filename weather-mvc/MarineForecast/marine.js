@@ -20,7 +20,7 @@ Weather.Marine = (function () {
         //locations is passed in the locations.js file (which needs to be loaded before we get here)
         var _mainContainer = $("#mainContainer");
         _mainContainer.empty();
-        _mainContainer.append("<label class='words_big' >Please Select an Area</label><hr/>");
+        _mainContainer.append("<label class='words_big' >Please Select an Area</label><br/>");
         for (var i = 0; i < locations.length; i++) {
             //var loc = locations[i];
             var loc = jQuery.extend(true, {}, locations[i]);

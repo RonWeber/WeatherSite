@@ -47,9 +47,14 @@ html, body {
     height:90%;
     padding:20px
 }
+
+.fullHeight{
+    height:100%;
+}
+
 .belowMainContainer{
-    height:90%;
-    padding:20px
+    height:100%;
+    padding:10px;
 }
 
 
