@@ -2,8 +2,8 @@
 
 Weather.Marine = (function () {
     function init() {
-        $('#mainContainer').treeview({ data: locations });
-        $('#mainContainer').on('nodeSelected', function (event, node) {
+        $('#tree').treeview({ data: locations });
+        $('#tree').on('nodeSelected', function (event, node) {
             if (node.url)
             {
                 setForecastScreen(node);
@@ -12,17 +12,17 @@ Weather.Marine = (function () {
     };
 
     function setForecastScreen(forecast) {
-        var _mainContainer = $("#mainContainer");
-        _mainContainer.empty();
-        _mainContainer.append(makeBackButton());
-        _mainContainer.append("<label class='words_med' >" + forecast.text + "</label><hr/>");
-
-        _mainContainer.append(forecast.url);
+        //var _mainContainer = $("#mainContainer");
+        //_mainContainer.empty();
+        //_mainContainer.append(forecast.url);
 
         var words = getForecast(forecast.url);
 
+        $('#tree').treeview('collapseAll', { silent: true });
+
         var _belowMainContainer = $("#belowMainContainer");
         _belowMainContainer.empty();
+        _belowMainContainer.append("<label class='words_med' >" + forecast.text + "</label>");
         _belowMainContainer.append(words);
     }
 
