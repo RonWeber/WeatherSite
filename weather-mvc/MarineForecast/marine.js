@@ -1,127 +1,28 @@
 ﻿var Weather = {};
 
 Weather.Marine = (function () {
-    var currentLocation = {};
-    var currentZone = {};
-    currentSubZone = {};
-
     function init() {
-        setMainScreen();
+        $('#mainContainer').treeview({ data: locations });
+        $('#mainContainer').on('nodeSelected', function (event, node) {
+            if (node.url)
+            {
+                setForecastScreen(node);
+            }
+        });
     };
-
-    function setMainScreen() {
-        //Reset any previous browses
-        currentLocation = {};
-        currentZone = {};
-        currentSubZone = {};
-
-        var _belowMainContainer = $("#belowMainContainer");
-        _belowMainContainer.empty();
-        //locations is passed in the locations.js file (which needs to be loaded before we get here)
-        var _mainContainer = $("#mainContainer");
-        _mainContainer.empty();
-        _mainContainer.append("<label class='words_big' >Please Select an Area</label><br/>");
-        for (var i = 0; i < locations.length; i++) {
-            //var loc = locations[i];
-            var loc = jQuery.extend(true, {}, locations[i]);
-            var _locationButton = $('<button/>', {
-                type: 'button',
-                name: 'locationButton',
-                text: loc.title,
-                index: i,
-                value: i,
-                class: 'btn btn-default center-block',
-                on: {
-                    click: function () {
-                        locationButtonClicked(this.value);
-                    }
-                }
-            });
-            _mainContainer.append(_locationButton);
-        };
-    };
-
-    function setLocationScreen(location) {
-        var _mainContainer = $("#mainContainer");
-        _mainContainer.empty();
-        _mainContainer.append(makeBackButton());
-        _mainContainer.append("<label class='words_med' >" + location.title + "</label><hr/>");
-        for (var i = 0; i < location.zones.length; i++) {
-            var zone = location.zones[i];
-            var _zoneButton = $('<button/>', {
-                type: 'button',
-                name: 'zoneButton',
-                text: zone.title,
-                value: i,
-                class: 'btn btn-default center-block',
-                on: {
-                    click: function () {
-                        zoneButtonClicked(this.value);
-                    }
-                }
-            });
-            _mainContainer.append(_zoneButton);
-        }
-    }
-
-    function setZoneScreen(zone) {
-        var _mainContainer = $("#mainContainer");
-        _mainContainer.empty();
-        _mainContainer.append(makeBackButton());
-        _mainContainer.append("<label class='words_med' >" + currentLocation.title + "->" + zone.title + "</label><hr/>");
-        for (var i = 0; i < zone.subZones.length; i++) {
-            var subZone = zone.subZones[i];
-            var _subZoneButton = $('<button/>', {
-                type: 'button',
-                name: 'subZoneButton',
-                text: subZone.title,
-                value: i,
-                class: 'btn btn-default center-block',
-                on: {
-                    click: function () {
-                        subZoneButtonClicked(this.value);
-                    }
-                }
-            });
-            _mainContainer.append(_subZoneButton);
-        }
-    }
-
-    function setSubZoneScreen(subZone) {
-        var _mainContainer = $("#mainContainer");
-        _mainContainer.empty();
-        _mainContainer.append(makeBackButton());
-        _mainContainer.append("<label class='words_med' >" + currentLocation.title + "->" + currentZone.title + "->" + subZone.title + "</label><hr/>");
-        for (var i = 0; i < subZone.forecasts.length; i++) {
-            var forecast = subZone.forecasts[i];
-            var _forecastButton = $('<button/>', {
-                type: 'button',
-                name: 'foreButton',
-                text: forecast.Description,
-                value: i,
-                class: 'btn btn-default center-block',
-                on: {
-                    click: function () {
-                        forecastButtonClicked(this.value);
-                    }
-                }
-            });
-            _mainContainer.append(_forecastButton);
-        }
-    }
-
 
     function setForecastScreen(forecast) {
         var _mainContainer = $("#mainContainer");
         _mainContainer.empty();
         _mainContainer.append(makeBackButton());
-        _mainContainer.append("<label class='words_med' >" + forecast.Description + "</label><hr/>");
+        _mainContainer.append("<label class='words_med' >" + forecast.text + "</label><hr/>");
 
         _mainContainer.append(forecast.url);
 
         var words = getForecast(forecast.url);
 
         var _belowMainContainer = $("#belowMainContainer");
+        _belowMainContainer.empty();
         _belowMainContainer.append(words);
     }
 
