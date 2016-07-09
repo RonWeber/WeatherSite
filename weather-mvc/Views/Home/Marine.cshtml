@@ -1,0 +1,33 @@
+﻿
+@{
+    ViewBag.title = "Marine Forecast";
+}
+
+@section scripts {
+    @Scripts.Render("~/Scripts/bootstrap-treeview.min.js")
+    @Scripts.Render("~/Scripts/MarineForecast/locations.js")
+    @Scripts.Render("~/Scripts/MarineForecast/marine.js")
+}
+@Styles.Render("~/Content/bootstrap-treeview.min.css")
+@Styles.Render("~/Content/weather.css")
+
+
+<div class="container fullHeight">
+    <div class="row">
+        <div class="col-md-5 col-md-offset-3">
+            <div id="mainContainer" class="mainContainer">
+                <div id="tree"></div>
+            </div>
+            <script>
+                $(document).ready(function () {
+                    Weather.Marine.init();
+                });
+            </script>
+        </div>
+    </div>
+    <div class="row fullHeight">
+        <div id="belowMainContainer" class="belowMainContainer">
+
+        </div>
+    </div>
+</div>
