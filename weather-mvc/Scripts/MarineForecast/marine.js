@@ -40,7 +40,7 @@ Weather.Marine = (function () {
     }
 
     function getForecast(url) {
-        var _fullUrl = "http://weather.noaa.gov/cgi-bin/fmtbltn.pl?file=forecasts/marine" + url;
+        var _fullUrl = "ftp://tgftp.nws.noaa.gov/data/forecasts/marine" + url;
 
         var _iframe = $('<iframe>', {
             src: _fullUrl,
