@@ -22,15 +22,5 @@ namespace BusinessLogic.Properties {
                 return defaultInstance;
             }
         }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://graphical.weather.gov/xml/SOAP_server/ndfdXMLserver.php")]
-        public string BusinessLogic_gov_weather_graphical_ndfdXML {
-            get {
-                return ((string)(this["BusinessLogic_gov_weather_graphical_ndfdXML"]));
-            }
-        }
     }
 }

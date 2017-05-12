@@ -10,11 +10,14 @@ namespace BusinessLogic
     public class WeatherLogic
     {
 
-        public static CityLogic cityList = new CityLogic();
+        public static CityLogic cityList;
 
         public WeatherLogic()
         {
-     
+            if (cityList == null)
+            {
+                cityList = new CityLogic();
+            }
         }
 
         public WeatherResponse GetWeatherOpenWeatherMap(string location, string timescale = "daily")
@@ -65,7 +68,7 @@ namespace BusinessLogic
 
         public WeatherResponse GetWeatherNWSByZIP(String zipCode, bool isDaily)
         {
-            gov.weather.graphical.ndfdXML ndfd = new gov.weather.graphical.ndfdXML();
+            weather.gov.ndfdXMLPortTypeClient ndfd = new weather.gov.ndfdXMLPortTypeClient();
             string xml = ndfd.LatLonListZipCode(zipCode);
             XDocument xdoc = XDocument.Parse(xml);
             XElement mainElement = xdoc.Element("dwml");

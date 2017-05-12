@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BusinessLogic.Entities;
-using BusinessLogic.gov.weather.graphical;
+using BusinessLogic.weather.gov;
 using System.Xml.Serialization;
 using System.IO;
 
@@ -16,8 +16,8 @@ namespace BusinessLogic.Entities
 
         public static NWSDailyWeatherResponse fetchResponse(LatLong location)
         {
-            ndfdXML request = new ndfdXML();
-            string response = request.NDFDgenByDay(location.getLatitude(), location.getLongitude(), DateTime.UtcNow.AddHours(-7), "10", unitType.e, formatType.Item24hourly);
+            ndfdXMLPortType request = new ndfdXMLPortTypeClient();
+            string response = request.NDFDgenByDay(location.getLatitude(), location.getLongitude(), DateTime.UtcNow.AddHours(-7), "10", "e", "24 hourly");
             
             XmlSerializer serializer = new XmlSerializer(typeof(Entities.NDFDgenByDay.dwml));
 

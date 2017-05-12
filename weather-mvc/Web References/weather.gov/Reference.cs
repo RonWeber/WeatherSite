@@ -13,7 +13,7 @@
 // 
 #pragma warning disable 1591
 
-namespace BusinessLogic.gov.weather.graphical {
+namespace weather_mvc.weather.gov {
     using System;
     using System.Web.Services;
     using System.Diagnostics;
@@ -23,7 +23,7 @@ namespace BusinessLogic.gov.weather.graphical {
     
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1099.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Web.Services.WebServiceBindingAttribute(Name="ndfdXMLBinding", Namespace="http://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl")]
@@ -31,15 +31,7 @@ namespace BusinessLogic.gov.weather.graphical {
         
         private System.Threading.SendOrPostCallback NDFDgenOperationCompleted;
         
-        private System.Threading.SendOrPostCallback NDFDgenByDayOperationCompleted;
-        
         private System.Threading.SendOrPostCallback NDFDgenLatLonListOperationCompleted;
-        
-        private System.Threading.SendOrPostCallback NDFDgenByDayLatLonListOperationCompleted;
-        
-        private System.Threading.SendOrPostCallback GmlLatLonListOperationCompleted;
-        
-        private System.Threading.SendOrPostCallback GmlTimeSeriesOperationCompleted;
         
         private System.Threading.SendOrPostCallback LatLonListSubgridOperationCompleted;
         
@@ -47,17 +39,25 @@ namespace BusinessLogic.gov.weather.graphical {
         
         private System.Threading.SendOrPostCallback LatLonListZipCodeOperationCompleted;
         
+        private System.Threading.SendOrPostCallback LatLonListCityNamesOperationCompleted;
+        
         private System.Threading.SendOrPostCallback LatLonListSquareOperationCompleted;
         
         private System.Threading.SendOrPostCallback CornerPointsOperationCompleted;
         
-        private System.Threading.SendOrPostCallback LatLonListCityNamesOperationCompleted;
+        private System.Threading.SendOrPostCallback GmlLatLonListOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback GmlTimeSeriesOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback NDFDgenByDayOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback NDFDgenByDayLatLonListOperationCompleted;
         
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
         public ndfdXML() {
-            this.Url = global::BusinessLogic.Properties.Settings.Default.BusinessLogic_gov_weather_graphical_ndfdXML;
+            this.Url = global::weather_mvc.Properties.Settings.Default.weather_mvc_weather_gov_ndfdXML;
             if ((this.IsLocalFileSystemWebService(this.Url) == true)) {
                 this.UseDefaultCredentials = true;
                 this.useDefaultCredentialsSetExplicitly = false;
@@ -95,19 +95,7 @@ namespace BusinessLogic.gov.weather.graphical {
         public event NDFDgenCompletedEventHandler NDFDgenCompleted;
         
         /// <remarks/>
-        public event NDFDgenByDayCompletedEventHandler NDFDgenByDayCompleted;
-        
-        /// <remarks/>
         public event NDFDgenLatLonListCompletedEventHandler NDFDgenLatLonListCompleted;
-        
-        /// <remarks/>
-        public event NDFDgenByDayLatLonListCompletedEventHandler NDFDgenByDayLatLonListCompleted;
-        
-        /// <remarks/>
-        public event GmlLatLonListCompletedEventHandler GmlLatLonListCompleted;
-        
-        /// <remarks/>
-        public event GmlTimeSeriesCompletedEventHandler GmlTimeSeriesCompleted;
         
         /// <remarks/>
         public event LatLonListSubgridCompletedEventHandler LatLonListSubgridCompleted;
@@ -119,18 +107,30 @@ namespace BusinessLogic.gov.weather.graphical {
         public event LatLonListZipCodeCompletedEventHandler LatLonListZipCodeCompleted;
         
         /// <remarks/>
+        public event LatLonListCityNamesCompletedEventHandler LatLonListCityNamesCompleted;
+        
+        /// <remarks/>
         public event LatLonListSquareCompletedEventHandler LatLonListSquareCompleted;
         
         /// <remarks/>
         public event CornerPointsCompletedEventHandler CornerPointsCompleted;
         
         /// <remarks/>
-        public event LatLonListCityNamesCompletedEventHandler LatLonListCityNamesCompleted;
+        public event GmlLatLonListCompletedEventHandler GmlLatLonListCompleted;
+        
+        /// <remarks/>
+        public event GmlTimeSeriesCompletedEventHandler GmlTimeSeriesCompleted;
+        
+        /// <remarks/>
+        public event NDFDgenByDayCompletedEventHandler NDFDgenByDayCompleted;
+        
+        /// <remarks/>
+        public event NDFDgenByDayLatLonListCompletedEventHandler NDFDgenByDayLatLonListCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapRpcMethodAttribute("http://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl#NDFDgen", RequestNamespace="http://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl", ResponseNamespace="http://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl")]
         [return: System.Xml.Serialization.SoapElementAttribute("dwmlOut")]
-        public string NDFDgen(decimal latitude, decimal longitude, productType product, System.DateTime startTime, System.DateTime endTime, unitType Unit, weatherParametersType weatherParameters) {
+        public string NDFDgen(decimal latitude, decimal longitude, string product, System.DateTime startTime, System.DateTime endTime, string Unit, weatherParametersType weatherParameters) {
             object[] results = this.Invoke("NDFDgen", new object[] {
                         latitude,
                         longitude,
@@ -143,12 +143,12 @@ namespace BusinessLogic.gov.weather.graphical {
         }
         
         /// <remarks/>
-        public void NDFDgenAsync(decimal latitude, decimal longitude, productType product, System.DateTime startTime, System.DateTime endTime, unitType Unit, weatherParametersType weatherParameters) {
+        public void NDFDgenAsync(decimal latitude, decimal longitude, string product, System.DateTime startTime, System.DateTime endTime, string Unit, weatherParametersType weatherParameters) {
             this.NDFDgenAsync(latitude, longitude, product, startTime, endTime, Unit, weatherParameters, null);
         }
         
         /// <remarks/>
-        public void NDFDgenAsync(decimal latitude, decimal longitude, productType product, System.DateTime startTime, System.DateTime endTime, unitType Unit, weatherParametersType weatherParameters, object userState) {
+        public void NDFDgenAsync(decimal latitude, decimal longitude, string product, System.DateTime startTime, System.DateTime endTime, string Unit, weatherParametersType weatherParameters, object userState) {
             if ((this.NDFDgenOperationCompleted == null)) {
                 this.NDFDgenOperationCompleted = new System.Threading.SendOrPostCallback(this.OnNDFDgenOperationCompleted);
             }
@@ -170,49 +170,9 @@ namespace BusinessLogic.gov.weather.graphical {
         }
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapRpcMethodAttribute("http://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl#NDFDgenByDay", RequestNamespace="http://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl", ResponseNamespace="http://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl")]
-        [return: System.Xml.Serialization.SoapElementAttribute("dwmlByDayOut")]
-        public string NDFDgenByDay(decimal latitude, decimal longitude, [System.Xml.Serialization.SoapElementAttribute(DataType="date")] System.DateTime startDate, [System.Xml.Serialization.SoapElementAttribute(DataType="integer")] string numDays, unitType Unit, formatType format) {
-            object[] results = this.Invoke("NDFDgenByDay", new object[] {
-                        latitude,
-                        longitude,
-                        startDate,
-                        numDays,
-                        Unit,
-                        format});
-            return ((string)(results[0]));
-        }
-        
-        /// <remarks/>
-        public void NDFDgenByDayAsync(decimal latitude, decimal longitude, System.DateTime startDate, string numDays, unitType Unit, formatType format) {
-            this.NDFDgenByDayAsync(latitude, longitude, startDate, numDays, Unit, format, null);
-        }
-        
-        /// <remarks/>
-        public void NDFDgenByDayAsync(decimal latitude, decimal longitude, System.DateTime startDate, string numDays, unitType Unit, formatType format, object userState) {
-            if ((this.NDFDgenByDayOperationCompleted == null)) {
-                this.NDFDgenByDayOperationCompleted = new System.Threading.SendOrPostCallback(this.OnNDFDgenByDayOperationCompleted);
-            }
-            this.InvokeAsync("NDFDgenByDay", new object[] {
-                        latitude,
-                        longitude,
-                        startDate,
-                        numDays,
-                        Unit,
-                        format}, this.NDFDgenByDayOperationCompleted, userState);
-        }
-        
-        private void OnNDFDgenByDayOperationCompleted(object arg) {
-            if ((this.NDFDgenByDayCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.NDFDgenByDayCompleted(this, new NDFDgenByDayCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
-        
-        /// <remarks/>
         [System.Web.Services.Protocols.SoapRpcMethodAttribute("http://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl#NDFDgenLatLonList", RequestNamespace="http://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl", ResponseNamespace="http://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl")]
         [return: System.Xml.Serialization.SoapElementAttribute("dwmlOut")]
-        public string NDFDgenLatLonList(string listLatLon, productType product, System.DateTime startTime, System.DateTime endTime, unitType Unit, weatherParametersType weatherParameters) {
+        public string NDFDgenLatLonList(string listLatLon, string product, System.DateTime startTime, System.DateTime endTime, string Unit, weatherParametersType weatherParameters) {
             object[] results = this.Invoke("NDFDgenLatLonList", new object[] {
                         listLatLon,
                         product,
@@ -224,12 +184,12 @@ namespace BusinessLogic.gov.weather.graphical {
         }
         
         /// <remarks/>
-        public void NDFDgenLatLonListAsync(string listLatLon, productType product, System.DateTime startTime, System.DateTime endTime, unitType Unit, weatherParametersType weatherParameters) {
+        public void NDFDgenLatLonListAsync(string listLatLon, string product, System.DateTime startTime, System.DateTime endTime, string Unit, weatherParametersType weatherParameters) {
             this.NDFDgenLatLonListAsync(listLatLon, product, startTime, endTime, Unit, weatherParameters, null);
         }
         
         /// <remarks/>
-        public void NDFDgenLatLonListAsync(string listLatLon, productType product, System.DateTime startTime, System.DateTime endTime, unitType Unit, weatherParametersType weatherParameters, object userState) {
+        public void NDFDgenLatLonListAsync(string listLatLon, string product, System.DateTime startTime, System.DateTime endTime, string Unit, weatherParametersType weatherParameters, object userState) {
             if ((this.NDFDgenLatLonListOperationCompleted == null)) {
                 this.NDFDgenLatLonListOperationCompleted = new System.Threading.SendOrPostCallback(this.OnNDFDgenLatLonListOperationCompleted);
             }
@@ -246,121 +206,6 @@ namespace BusinessLogic.gov.weather.graphical {
             if ((this.NDFDgenLatLonListCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.NDFDgenLatLonListCompleted(this, new NDFDgenLatLonListCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
-        
-        /// <remarks/>
-        [System.Web.Services.Protocols.SoapRpcMethodAttribute("http://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl#NDFDgenByDayLatLonList" +
-            "", RequestNamespace="http://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl", ResponseNamespace="http://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl")]
-        [return: System.Xml.Serialization.SoapElementAttribute("dwmlByDayOut")]
-        public string NDFDgenByDayLatLonList(string listLatLon, [System.Xml.Serialization.SoapElementAttribute(DataType="date")] System.DateTime startDate, [System.Xml.Serialization.SoapElementAttribute(DataType="integer")] string numDays, unitType Unit, formatType format) {
-            object[] results = this.Invoke("NDFDgenByDayLatLonList", new object[] {
-                        listLatLon,
-                        startDate,
-                        numDays,
-                        Unit,
-                        format});
-            return ((string)(results[0]));
-        }
-        
-        /// <remarks/>
-        public void NDFDgenByDayLatLonListAsync(string listLatLon, System.DateTime startDate, string numDays, unitType Unit, formatType format) {
-            this.NDFDgenByDayLatLonListAsync(listLatLon, startDate, numDays, Unit, format, null);
-        }
-        
-        /// <remarks/>
-        public void NDFDgenByDayLatLonListAsync(string listLatLon, System.DateTime startDate, string numDays, unitType Unit, formatType format, object userState) {
-            if ((this.NDFDgenByDayLatLonListOperationCompleted == null)) {
-                this.NDFDgenByDayLatLonListOperationCompleted = new System.Threading.SendOrPostCallback(this.OnNDFDgenByDayLatLonListOperationCompleted);
-            }
-            this.InvokeAsync("NDFDgenByDayLatLonList", new object[] {
-                        listLatLon,
-                        startDate,
-                        numDays,
-                        Unit,
-                        format}, this.NDFDgenByDayLatLonListOperationCompleted, userState);
-        }
-        
-        private void OnNDFDgenByDayLatLonListOperationCompleted(object arg) {
-            if ((this.NDFDgenByDayLatLonListCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.NDFDgenByDayLatLonListCompleted(this, new NDFDgenByDayLatLonListCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
-        
-        /// <remarks/>
-        [System.Web.Services.Protocols.SoapRpcMethodAttribute("http://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl#GmlLatLonList", RequestNamespace="http://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl", ResponseNamespace="http://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl")]
-        [return: System.Xml.Serialization.SoapElementAttribute("dwGmlOut")]
-        public string GmlLatLonList(string listLatLon, System.DateTime requestedTime, featureTypeType featureType, weatherParametersType weatherParameters) {
-            object[] results = this.Invoke("GmlLatLonList", new object[] {
-                        listLatLon,
-                        requestedTime,
-                        featureType,
-                        weatherParameters});
-            return ((string)(results[0]));
-        }
-        
-        /// <remarks/>
-        public void GmlLatLonListAsync(string listLatLon, System.DateTime requestedTime, featureTypeType featureType, weatherParametersType weatherParameters) {
-            this.GmlLatLonListAsync(listLatLon, requestedTime, featureType, weatherParameters, null);
-        }
-        
-        /// <remarks/>
-        public void GmlLatLonListAsync(string listLatLon, System.DateTime requestedTime, featureTypeType featureType, weatherParametersType weatherParameters, object userState) {
-            if ((this.GmlLatLonListOperationCompleted == null)) {
-                this.GmlLatLonListOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGmlLatLonListOperationCompleted);
-            }
-            this.InvokeAsync("GmlLatLonList", new object[] {
-                        listLatLon,
-                        requestedTime,
-                        featureType,
-                        weatherParameters}, this.GmlLatLonListOperationCompleted, userState);
-        }
-        
-        private void OnGmlLatLonListOperationCompleted(object arg) {
-            if ((this.GmlLatLonListCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.GmlLatLonListCompleted(this, new GmlLatLonListCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
-        
-        /// <remarks/>
-        [System.Web.Services.Protocols.SoapRpcMethodAttribute("http://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl#GmlTimeSeries", RequestNamespace="http://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl", ResponseNamespace="http://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl")]
-        [return: System.Xml.Serialization.SoapElementAttribute("dwGmlOut")]
-        public string GmlTimeSeries(string listLatLon, System.DateTime startTime, System.DateTime endTime, compTypeType compType, featureTypeType featureType, string propertyName) {
-            object[] results = this.Invoke("GmlTimeSeries", new object[] {
-                        listLatLon,
-                        startTime,
-                        endTime,
-                        compType,
-                        featureType,
-                        propertyName});
-            return ((string)(results[0]));
-        }
-        
-        /// <remarks/>
-        public void GmlTimeSeriesAsync(string listLatLon, System.DateTime startTime, System.DateTime endTime, compTypeType compType, featureTypeType featureType, string propertyName) {
-            this.GmlTimeSeriesAsync(listLatLon, startTime, endTime, compType, featureType, propertyName, null);
-        }
-        
-        /// <remarks/>
-        public void GmlTimeSeriesAsync(string listLatLon, System.DateTime startTime, System.DateTime endTime, compTypeType compType, featureTypeType featureType, string propertyName, object userState) {
-            if ((this.GmlTimeSeriesOperationCompleted == null)) {
-                this.GmlTimeSeriesOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGmlTimeSeriesOperationCompleted);
-            }
-            this.InvokeAsync("GmlTimeSeries", new object[] {
-                        listLatLon,
-                        startTime,
-                        endTime,
-                        compType,
-                        featureType,
-                        propertyName}, this.GmlTimeSeriesOperationCompleted, userState);
-        }
-        
-        private void OnGmlTimeSeriesOperationCompleted(object arg) {
-            if ((this.GmlTimeSeriesCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.GmlTimeSeriesCompleted(this, new GmlTimeSeriesCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -469,6 +314,36 @@ namespace BusinessLogic.gov.weather.graphical {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapRpcMethodAttribute("http://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl#LatLonListCityNames", RequestNamespace="http://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl", ResponseNamespace="http://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl")]
+        [return: System.Xml.Serialization.SoapElementAttribute("listLatLonOut")]
+        public string LatLonListCityNames([System.Xml.Serialization.SoapElementAttribute(DataType="integer")] string displayLevel) {
+            object[] results = this.Invoke("LatLonListCityNames", new object[] {
+                        displayLevel});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void LatLonListCityNamesAsync(string displayLevel) {
+            this.LatLonListCityNamesAsync(displayLevel, null);
+        }
+        
+        /// <remarks/>
+        public void LatLonListCityNamesAsync(string displayLevel, object userState) {
+            if ((this.LatLonListCityNamesOperationCompleted == null)) {
+                this.LatLonListCityNamesOperationCompleted = new System.Threading.SendOrPostCallback(this.OnLatLonListCityNamesOperationCompleted);
+            }
+            this.InvokeAsync("LatLonListCityNames", new object[] {
+                        displayLevel}, this.LatLonListCityNamesOperationCompleted, userState);
+        }
+        
+        private void OnLatLonListCityNamesOperationCompleted(object arg) {
+            if ((this.LatLonListCityNamesCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.LatLonListCityNamesCompleted(this, new LatLonListCityNamesCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         [System.Web.Services.Protocols.SoapRpcMethodAttribute("http://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl#LatLonListSquare", RequestNamespace="http://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl", ResponseNamespace="http://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl")]
         [return: System.Xml.Serialization.SoapElementAttribute("listLatLonOut")]
         public string LatLonListSquare(decimal centerPointLat, decimal centerPointLon, decimal distanceLat, decimal distanceLon, decimal resolution) {
@@ -509,19 +384,19 @@ namespace BusinessLogic.gov.weather.graphical {
         /// <remarks/>
         [System.Web.Services.Protocols.SoapRpcMethodAttribute("http://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl#CornerPoints", RequestNamespace="http://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl", ResponseNamespace="http://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl")]
         [return: System.Xml.Serialization.SoapElementAttribute("listLatLonOut")]
-        public string CornerPoints(sectorType sector) {
+        public string CornerPoints(string sector) {
             object[] results = this.Invoke("CornerPoints", new object[] {
                         sector});
             return ((string)(results[0]));
         }
         
         /// <remarks/>
-        public void CornerPointsAsync(sectorType sector) {
+        public void CornerPointsAsync(string sector) {
             this.CornerPointsAsync(sector, null);
         }
         
         /// <remarks/>
-        public void CornerPointsAsync(sectorType sector, object userState) {
+        public void CornerPointsAsync(string sector, object userState) {
             if ((this.CornerPointsOperationCompleted == null)) {
                 this.CornerPointsOperationCompleted = new System.Threading.SendOrPostCallback(this.OnCornerPointsOperationCompleted);
             }
@@ -537,32 +412,157 @@ namespace BusinessLogic.gov.weather.graphical {
         }
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapRpcMethodAttribute("http://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl#LatLonListCityNames", RequestNamespace="http://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl", ResponseNamespace="http://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl")]
-        [return: System.Xml.Serialization.SoapElementAttribute("listCityNamesOut")]
-        public string LatLonListCityNames([System.Xml.Serialization.SoapElementAttribute(DataType="integer")] string displayLevel) {
-            object[] results = this.Invoke("LatLonListCityNames", new object[] {
-                        displayLevel});
+        [System.Web.Services.Protocols.SoapRpcMethodAttribute("http://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl#GmlLatLonList", RequestNamespace="http://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl", ResponseNamespace="http://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl")]
+        [return: System.Xml.Serialization.SoapElementAttribute("dwGmlOut")]
+        public string GmlLatLonList(string listLatLon, System.DateTime requestedTime, string featureType, weatherParametersType weatherParameters) {
+            object[] results = this.Invoke("GmlLatLonList", new object[] {
+                        listLatLon,
+                        requestedTime,
+                        featureType,
+                        weatherParameters});
             return ((string)(results[0]));
         }
         
         /// <remarks/>
-        public void LatLonListCityNamesAsync(string displayLevel) {
-            this.LatLonListCityNamesAsync(displayLevel, null);
+        public void GmlLatLonListAsync(string listLatLon, System.DateTime requestedTime, string featureType, weatherParametersType weatherParameters) {
+            this.GmlLatLonListAsync(listLatLon, requestedTime, featureType, weatherParameters, null);
         }
         
         /// <remarks/>
-        public void LatLonListCityNamesAsync(string displayLevel, object userState) {
-            if ((this.LatLonListCityNamesOperationCompleted == null)) {
-                this.LatLonListCityNamesOperationCompleted = new System.Threading.SendOrPostCallback(this.OnLatLonListCityNamesOperationCompleted);
+        public void GmlLatLonListAsync(string listLatLon, System.DateTime requestedTime, string featureType, weatherParametersType weatherParameters, object userState) {
+            if ((this.GmlLatLonListOperationCompleted == null)) {
+                this.GmlLatLonListOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGmlLatLonListOperationCompleted);
             }
-            this.InvokeAsync("LatLonListCityNames", new object[] {
-                        displayLevel}, this.LatLonListCityNamesOperationCompleted, userState);
+            this.InvokeAsync("GmlLatLonList", new object[] {
+                        listLatLon,
+                        requestedTime,
+                        featureType,
+                        weatherParameters}, this.GmlLatLonListOperationCompleted, userState);
         }
         
-        private void OnLatLonListCityNamesOperationCompleted(object arg) {
-            if ((this.LatLonListCityNamesCompleted != null)) {
+        private void OnGmlLatLonListOperationCompleted(object arg) {
+            if ((this.GmlLatLonListCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.LatLonListCityNamesCompleted(this, new LatLonListCityNamesCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+                this.GmlLatLonListCompleted(this, new GmlLatLonListCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapRpcMethodAttribute("http://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl#GmlTimeSeries", RequestNamespace="http://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl", ResponseNamespace="http://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl")]
+        [return: System.Xml.Serialization.SoapElementAttribute("dwGmlOut")]
+        public string GmlTimeSeries(string listLatLon, System.DateTime startTime, System.DateTime endTime, string compType, string featureType, string propertyName) {
+            object[] results = this.Invoke("GmlTimeSeries", new object[] {
+                        listLatLon,
+                        startTime,
+                        endTime,
+                        compType,
+                        featureType,
+                        propertyName});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void GmlTimeSeriesAsync(string listLatLon, System.DateTime startTime, System.DateTime endTime, string compType, string featureType, string propertyName) {
+            this.GmlTimeSeriesAsync(listLatLon, startTime, endTime, compType, featureType, propertyName, null);
+        }
+        
+        /// <remarks/>
+        public void GmlTimeSeriesAsync(string listLatLon, System.DateTime startTime, System.DateTime endTime, string compType, string featureType, string propertyName, object userState) {
+            if ((this.GmlTimeSeriesOperationCompleted == null)) {
+                this.GmlTimeSeriesOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGmlTimeSeriesOperationCompleted);
+            }
+            this.InvokeAsync("GmlTimeSeries", new object[] {
+                        listLatLon,
+                        startTime,
+                        endTime,
+                        compType,
+                        featureType,
+                        propertyName}, this.GmlTimeSeriesOperationCompleted, userState);
+        }
+        
+        private void OnGmlTimeSeriesOperationCompleted(object arg) {
+            if ((this.GmlTimeSeriesCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GmlTimeSeriesCompleted(this, new GmlTimeSeriesCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapRpcMethodAttribute("http://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl#NDFDgenByDay", RequestNamespace="http://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl", ResponseNamespace="http://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl")]
+        [return: System.Xml.Serialization.SoapElementAttribute("dwmlByDayOut")]
+        public string NDFDgenByDay(decimal latitude, decimal longitude, [System.Xml.Serialization.SoapElementAttribute(DataType="date")] System.DateTime startDate, [System.Xml.Serialization.SoapElementAttribute(DataType="integer")] string numDays, string Unit, string format) {
+            object[] results = this.Invoke("NDFDgenByDay", new object[] {
+                        latitude,
+                        longitude,
+                        startDate,
+                        numDays,
+                        Unit,
+                        format});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void NDFDgenByDayAsync(decimal latitude, decimal longitude, System.DateTime startDate, string numDays, string Unit, string format) {
+            this.NDFDgenByDayAsync(latitude, longitude, startDate, numDays, Unit, format, null);
+        }
+        
+        /// <remarks/>
+        public void NDFDgenByDayAsync(decimal latitude, decimal longitude, System.DateTime startDate, string numDays, string Unit, string format, object userState) {
+            if ((this.NDFDgenByDayOperationCompleted == null)) {
+                this.NDFDgenByDayOperationCompleted = new System.Threading.SendOrPostCallback(this.OnNDFDgenByDayOperationCompleted);
+            }
+            this.InvokeAsync("NDFDgenByDay", new object[] {
+                        latitude,
+                        longitude,
+                        startDate,
+                        numDays,
+                        Unit,
+                        format}, this.NDFDgenByDayOperationCompleted, userState);
+        }
+        
+        private void OnNDFDgenByDayOperationCompleted(object arg) {
+            if ((this.NDFDgenByDayCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.NDFDgenByDayCompleted(this, new NDFDgenByDayCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapRpcMethodAttribute("http://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl#NDFDgenByDayLatLonList" +
+            "", RequestNamespace="http://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl", ResponseNamespace="http://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl")]
+        [return: System.Xml.Serialization.SoapElementAttribute("dwmlByDayOut")]
+        public string NDFDgenByDayLatLonList(string listLatLon, [System.Xml.Serialization.SoapElementAttribute(DataType="date")] System.DateTime startDate, [System.Xml.Serialization.SoapElementAttribute(DataType="integer")] string numDays, string Unit, string format) {
+            object[] results = this.Invoke("NDFDgenByDayLatLonList", new object[] {
+                        listLatLon,
+                        startDate,
+                        numDays,
+                        Unit,
+                        format});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void NDFDgenByDayLatLonListAsync(string listLatLon, System.DateTime startDate, string numDays, string Unit, string format) {
+            this.NDFDgenByDayLatLonListAsync(listLatLon, startDate, numDays, Unit, format, null);
+        }
+        
+        /// <remarks/>
+        public void NDFDgenByDayLatLonListAsync(string listLatLon, System.DateTime startDate, string numDays, string Unit, string format, object userState) {
+            if ((this.NDFDgenByDayLatLonListOperationCompleted == null)) {
+                this.NDFDgenByDayLatLonListOperationCompleted = new System.Threading.SendOrPostCallback(this.OnNDFDgenByDayLatLonListOperationCompleted);
+            }
+            this.InvokeAsync("NDFDgenByDayLatLonList", new object[] {
+                        listLatLon,
+                        startDate,
+                        numDays,
+                        Unit,
+                        format}, this.NDFDgenByDayLatLonListOperationCompleted, userState);
+        }
+        
+        private void OnNDFDgenByDayLatLonListOperationCompleted(object arg) {
+            if ((this.NDFDgenByDayLatLonListCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.NDFDgenByDayLatLonListCompleted(this, new NDFDgenByDayLatLonListCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -586,38 +586,11 @@ namespace BusinessLogic.gov.weather.graphical {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1067.0")]
-    [System.SerializableAttribute()]
-    [System.Xml.Serialization.SoapTypeAttribute(Namespace="http://graphical.weather.gov/xml/DWMLgen/schema/DWML.xsd")]
-    public enum productType {
-        
-        /// <remarks/>
-        [System.Xml.Serialization.SoapEnumAttribute("time-series")]
-        timeseries,
-        
-        /// <remarks/>
-        glance,
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1067.0")]
-    [System.SerializableAttribute()]
-    [System.Xml.Serialization.SoapTypeAttribute(Namespace="http://graphical.weather.gov/xml/DWMLgen/schema/DWML.xsd")]
-    public enum unitType {
-        
-        /// <remarks/>
-        e,
-        
-        /// <remarks/>
-        m,
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1067.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1099.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.SoapTypeAttribute(Namespace="http://graphical.weather.gov/xml/DWMLgen/schema/DWML.xsd")]
+    [System.Xml.Serialization.SoapTypeAttribute(Namespace="http://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl")]
     public partial class weatherParametersType {
         
         private bool maxtField;
@@ -1282,104 +1255,11 @@ namespace BusinessLogic.gov.weather.graphical {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1067.0")]
-    [System.SerializableAttribute()]
-    [System.Xml.Serialization.SoapTypeAttribute(Namespace="http://graphical.weather.gov/xml/DWMLgen/schema/DWML.xsd")]
-    public enum formatType {
-        
-        /// <remarks/>
-        [System.Xml.Serialization.SoapEnumAttribute("24 hourly")]
-        Item24hourly,
-        
-        /// <remarks/>
-        [System.Xml.Serialization.SoapEnumAttribute("12 hourly")]
-        Item12hourly,
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1067.0")]
-    [System.SerializableAttribute()]
-    [System.Xml.Serialization.SoapTypeAttribute(Namespace="http://graphical.weather.gov/xml/DWMLgen/schema/DWML.xsd")]
-    public enum featureTypeType {
-        
-        /// <remarks/>
-        Forecast_Gml2Point,
-        
-        /// <remarks/>
-        Forecast_Gml2AllWx,
-        
-        /// <remarks/>
-        Forecast_GmlsfPoint,
-        
-        /// <remarks/>
-        Forecast_GmlObs,
-        
-        /// <remarks/>
-        NdfdMultiPointCoverage,
-        
-        /// <remarks/>
-        Ndfd_KmlPoint,
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1067.0")]
-    [System.SerializableAttribute()]
-    [System.Xml.Serialization.SoapTypeAttribute(Namespace="http://graphical.weather.gov/xml/DWMLgen/schema/DWML.xsd")]
-    public enum compTypeType {
-        
-        /// <remarks/>
-        IsEqual,
-        
-        /// <remarks/>
-        Between,
-        
-        /// <remarks/>
-        GreaterThan,
-        
-        /// <remarks/>
-        GreaterThanEqualTo,
-        
-        /// <remarks/>
-        LessThan,
-        
-        /// <remarks/>
-        LessThanEqualTo,
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1067.0")]
-    [System.SerializableAttribute()]
-    [System.Xml.Serialization.SoapTypeAttribute(Namespace="http://graphical.weather.gov/xml/DWMLgen/schema/DWML.xsd")]
-    public enum sectorType {
-        
-        /// <remarks/>
-        conus,
-        
-        /// <remarks/>
-        nhemi,
-        
-        /// <remarks/>
-        alaska,
-        
-        /// <remarks/>
-        guam,
-        
-        /// <remarks/>
-        hawaii,
-        
-        /// <remarks/>
-        puertori,
-        
-        /// <remarks/>
-        npacocn,
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1099.0")]
     public delegate void NDFDgenCompletedEventHandler(object sender, NDFDgenCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1099.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class NDFDgenCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -1401,37 +1281,11 @@ namespace BusinessLogic.gov.weather.graphical {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
-    public delegate void NDFDgenByDayCompletedEventHandler(object sender, NDFDgenByDayCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class NDFDgenByDayCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal NDFDgenByDayCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public string Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((string)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1099.0")]
     public delegate void NDFDgenLatLonListCompletedEventHandler(object sender, NDFDgenLatLonListCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1099.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class NDFDgenLatLonListCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -1453,89 +1307,11 @@ namespace BusinessLogic.gov.weather.graphical {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
-    public delegate void NDFDgenByDayLatLonListCompletedEventHandler(object sender, NDFDgenByDayLatLonListCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class NDFDgenByDayLatLonListCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal NDFDgenByDayLatLonListCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public string Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((string)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
-    public delegate void GmlLatLonListCompletedEventHandler(object sender, GmlLatLonListCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class GmlLatLonListCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal GmlLatLonListCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public string Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((string)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
-    public delegate void GmlTimeSeriesCompletedEventHandler(object sender, GmlTimeSeriesCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class GmlTimeSeriesCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal GmlTimeSeriesCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public string Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((string)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1099.0")]
     public delegate void LatLonListSubgridCompletedEventHandler(object sender, LatLonListSubgridCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1099.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class LatLonListSubgridCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -1557,11 +1333,11 @@ namespace BusinessLogic.gov.weather.graphical {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1099.0")]
     public delegate void LatLonListLineCompletedEventHandler(object sender, LatLonListLineCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1099.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class LatLonListLineCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -1583,11 +1359,11 @@ namespace BusinessLogic.gov.weather.graphical {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1099.0")]
     public delegate void LatLonListZipCodeCompletedEventHandler(object sender, LatLonListZipCodeCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1099.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class LatLonListZipCodeCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -1609,11 +1385,37 @@ namespace BusinessLogic.gov.weather.graphical {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1099.0")]
+    public delegate void LatLonListCityNamesCompletedEventHandler(object sender, LatLonListCityNamesCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1099.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class LatLonListCityNamesCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal LatLonListCityNamesCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1099.0")]
     public delegate void LatLonListSquareCompletedEventHandler(object sender, LatLonListSquareCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1099.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class LatLonListSquareCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -1635,11 +1437,11 @@ namespace BusinessLogic.gov.weather.graphical {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1099.0")]
     public delegate void CornerPointsCompletedEventHandler(object sender, CornerPointsCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1099.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class CornerPointsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -1661,18 +1463,96 @@ namespace BusinessLogic.gov.weather.graphical {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
-    public delegate void LatLonListCityNamesCompletedEventHandler(object sender, LatLonListCityNamesCompletedEventArgs e);
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1099.0")]
+    public delegate void GmlLatLonListCompletedEventHandler(object sender, GmlLatLonListCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1099.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class LatLonListCityNamesCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+    public partial class GmlLatLonListCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
         
-        internal LatLonListCityNamesCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+        internal GmlLatLonListCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1099.0")]
+    public delegate void GmlTimeSeriesCompletedEventHandler(object sender, GmlTimeSeriesCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1099.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GmlTimeSeriesCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GmlTimeSeriesCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1099.0")]
+    public delegate void NDFDgenByDayCompletedEventHandler(object sender, NDFDgenByDayCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1099.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class NDFDgenByDayCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal NDFDgenByDayCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1099.0")]
+    public delegate void NDFDgenByDayLatLonListCompletedEventHandler(object sender, NDFDgenByDayLatLonListCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1099.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class NDFDgenByDayLatLonListCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal NDFDgenByDayLatLonListCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

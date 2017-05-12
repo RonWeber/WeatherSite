@@ -29,7 +29,7 @@ namespace BusinessLogic
 
         private List<City> createCityList()
         {
-            gov.weather.graphical.ndfdXML w = new gov.weather.graphical.ndfdXML();
+            weather.gov.ndfdXMLPortTypeClient w = new weather.gov.ndfdXMLPortTypeClient();
             string s = w.LatLonListCityNames("1234");
             XDocument xDoc = XDocument.Parse(s);
             XElement mainElement = xDoc.Element("dwml");

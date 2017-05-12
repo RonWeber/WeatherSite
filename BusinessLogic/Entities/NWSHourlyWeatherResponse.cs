@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BusinessLogic.Entities;
-using BusinessLogic.gov.weather.graphical;
 using System.Xml.Serialization;
 using System.IO;
+using BusinessLogic.weather.gov;
 
 namespace BusinessLogic.Entities
 {
@@ -17,12 +17,12 @@ namespace BusinessLogic.Entities
 
         public static NWSHourlyWeatherResponse fetchResponse(LatLong location)
         {
-            ndfdXML request = new ndfdXML();
+            ndfdXMLPortTypeClient request = new ndfdXMLPortTypeClient();
             weatherParametersType parameters = new weatherParametersType();
             parameters.temp = true; parameters.pop12 = true; parameters.wx = true; parameters.icons = true;
             parameters.wwa = true;  parameters.rh = true; parameters.waveh = true;
-            string response = request.NDFDgen(location.getLatitude(), location.getLongitude(), productType.timeseries, DateTime.UtcNow.AddHours(-7), 
-                DateTime.Now.AddDays(8), unitType.e, parameters);
+            string response = request.NDFDgen(location.getLatitude(), location.getLongitude(), "time-series", DateTime.UtcNow.AddHours(-7), 
+                DateTime.Now.AddDays(8), "e", parameters);
 
             XmlSerializer serializer = new XmlSerializer(typeof(Entities.NDFDgenHourly.dwml));
 
