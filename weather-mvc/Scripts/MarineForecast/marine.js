@@ -12,7 +12,7 @@ Weather.Marine = (function () {
     };
 
     function setForecastScreen(forecast) {
-       getForecast(forecast);
+       getForecastSecondary(forecast);
 
         $('#tree').treeview('collapseAll', { silent: true });
     }
@@ -31,16 +31,38 @@ Weather.Marine = (function () {
     }
 
     function getForecast(forecast) {
+        try {
+            var _fullUrl = "ftp://tgftp.nws.noaa.gov/data/forecasts/marine" + forecast.url;
+
+            var _iframe = $('<iframe>', {
+                src: _fullUrl,
+                width: '90%',
+                height: '100%'
+            });
+           
+            var _belowMainContainer = $("#belowMainContainer");
+            _belowMainContainer.empty();
+            _belowMainContainer.append("<label class='words_med' >" + forecast.text + "</label><br/><br/>");
+            _belowMainContainer.append(_iframe);
+
+        }
+        catch (ex) {
+            getForecastSecondary(forecast);
+        }
+    }
+
+    //Google doesn't like ftp embedded in web pages- if so, get the forecast from the server
+    function getForecastSecondary(forecast) {
 
         $.ajax({
             url: 'MarineForecast?url=' + forecast.url,
             success: function (response) {
                 var words = response;
 
-                        var _belowMainContainer = $("#belowMainContainer");
-                        _belowMainContainer.empty();
-                        _belowMainContainer.append("<label class='words_med' >" + forecast.text + "</label><br/><br/>");
-                        _belowMainContainer.append( words);
+                var _belowMainContainer = $("#belowMainContainer");
+                _belowMainContainer.empty();
+                _belowMainContainer.append("<label class='words_med' >" + forecast.text + "</label><br/><br/>");
+                _belowMainContainer.append( words);
             },
             error: function (response) { alert(response) }
         });
