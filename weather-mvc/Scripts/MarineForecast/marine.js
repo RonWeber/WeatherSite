@@ -12,18 +12,9 @@ Weather.Marine = (function () {
     };
 
     function setForecastScreen(forecast) {
-        //var _mainContainer = $("#mainContainer");
-        //_mainContainer.empty();
-        //_mainContainer.append(forecast.url);
-
-        var words = getForecast(forecast.url);
+       getForecast(forecast);
 
         $('#tree').treeview('collapseAll', { silent: true });
-
-        var _belowMainContainer = $("#belowMainContainer");
-        _belowMainContainer.empty();
-        _belowMainContainer.append("<label class='words_med' >" + forecast.text + "</label>");
-        _belowMainContainer.append(words);
     }
 
     function makeBackButton() {
@@ -39,15 +30,20 @@ Weather.Marine = (function () {
         return backButton;
     }
 
-    function getForecast(url) {
-        var _fullUrl = "ftp://tgftp.nws.noaa.gov/data/forecasts/marine" + url;
+    function getForecast(forecast) {
 
-        var _iframe = $('<iframe>', {
-            src: _fullUrl,
-            width: '90%',
-            height: '100%'
+        $.ajax({
+            url: 'MarineForecast?url=' + forecast.url,
+            success: function (response) {
+                var words = response;
+
+                        var _belowMainContainer = $("#belowMainContainer");
+                        _belowMainContainer.empty();
+                        _belowMainContainer.append("<label class='words_med' >" + forecast.text + "</label><br/><br/>");
+                        _belowMainContainer.append( words);
+            },
+            error: function (response) { alert(response) }
         });
-        return _iframe;
     }
 
 

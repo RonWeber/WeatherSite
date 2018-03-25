@@ -57,5 +57,27 @@ namespace weather_mvc.Controllers
         {
             return View();
         }
+
+        public string MarineForecast(string url)
+        {
+            FtpWebRequest request = (FtpWebRequest)WebRequest.Create("ftp://tgftp.nws.noaa.gov/data/forecasts/marine/" + url);
+            request.Method = WebRequestMethods.Ftp.DownloadFile;
+
+            FtpWebResponse response = (FtpWebResponse)request.GetResponse();
+
+            Stream responseStream = response.GetResponseStream();
+            StreamReader reader = new StreamReader(responseStream);
+            string sResult = reader.ReadToEnd();
+            if (!string.IsNullOrEmpty(sResult))
+            {
+                sResult = sResult.Replace("\n", "<br/>");
+            }
+
+            reader.Close();
+            reader.Dispose();
+            response.Close();
+
+            return sResult;
+        }
     }
 }
